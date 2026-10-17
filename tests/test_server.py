@@ -39,6 +39,8 @@ class FakeDetector:
     """Detector falso: a resposta depende da largura da imagem."""
 
     def detect(self, image):
+        if image.width == 402:
+            raise RuntimeError("falha simulada do modelo")
         return {
             400: [Box(100, 100, 300, 250, 0.95)],  # uma ave
             401: [],  # nada
@@ -111,3 +113,26 @@ def test_health_check_reports_serving(stub):
     for service in ("", "passarim.curator.v1.PhotoCuratorService"):
         resp = health.Check(health_pb2.HealthCheckRequest(service=service))
         assert resp.status == health_pb2.HealthCheckResponse.SERVING
+
+
+def test_huge_image_does_not_break_batch(stub):
+    # Uma imagem com mais pixels que config.MAX_IMAGE_PIXELS (bomba de
+    # descompressão: arquivo pequeno, imagem enorme) volta UNSPECIFIED sem
+    # ser decodificada, e o resto do lote segue.
+    client, _ = stub
+    resp = client.ClassifyPhotos(
+        request(("a", webp(400, 300)), ("enorme", webp(4200, 4200)), ("c", webp(401, 300)))
+    )
+    assert [v.category for v in resp.verdicts] == [
+        curator_pb2.PHOTO_CATEGORY_SINGLE_BIRD,
+        curator_pb2.PHOTO_CATEGORY_UNSPECIFIED,
+        curator_pb2.PHOTO_CATEGORY_EGGS,
+    ]
+
+
+def test_model_error_does_not_break_batch(stub):
+    # Um erro dentro do detector, do CLIP ou da regra também é "da foto".
+    client, _ = stub
+    resp = client.ClassifyPhotos(request(("a", webp(400, 300)), ("falha", webp(402, 300))))
+    assert resp.verdicts[0].category == curator_pb2.PHOTO_CATEGORY_SINGLE_BIRD
+    assert resp.verdicts[1].category == curator_pb2.PHOTO_CATEGORY_UNSPECIFIED

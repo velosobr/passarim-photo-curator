@@ -11,13 +11,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /
 WORKDIR /app
 # UV_COMPILE_BYTECODE: já gera os .pyc (a imagem final é só leitura).
 # UV_LINK_MODE=copy: copia os pacotes para a .venv em vez de criar links para o cache.
+# --no-editable (mais abaixo): o próprio projeto também é instalado na .venv como
+# pacote normal, em vez de um link para /app/src; assim ele também ganha os .pyc.
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 # Primeiro só os arquivos de dependência: enquanto eles não mudam, o Docker
 # reaproveita esta camada (a mais demorada) entre builds.
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 COPY src ./src
-RUN uv sync --frozen --no-dev
+RUN uv sync --frozen --no-dev --no-editable
 # Pesos dentro da imagem, na revisão e com o hash conferidos (weights.py).
 RUN /app/.venv/bin/python -m photo_curator.weights /opt/models
 

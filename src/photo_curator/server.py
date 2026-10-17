@@ -6,8 +6,9 @@ O que faz, para cada chamada ClassifyPhotos:
    maior ave e chama a regra (rules.curate);
 3. devolve os vereditos na ordem do pedido.
 
-Uma foto que não abre vira PHOTO_CATEGORY_UNSPECIFIED e o lote segue: o erro é
-da foto, não do lote, e derrubar tudo faria o worker tentar de novo para sempre.
+Uma foto que não abre, que é grande demais (config.MAX_IMAGE_PIXELS) ou que faz
+um modelo falhar vira PHOTO_CATEGORY_UNSPECIFIED e o lote segue: o erro é da
+foto, não do lote, e derrubar tudo faria o worker tentar de novo para sempre.
 
 gRPC em Python: o servidor tem um "pool" de threads; cada chamada roda numa
 thread. Usamos 2 (o trabalho é de CPU e o worker manda um lote por vez); as
@@ -65,15 +66,29 @@ class CuratorServicer(curator_pb2_grpc.PhotoCuratorServiceServicer):
     def _classify_one(self, photo_id: str, data: bytes) -> curator_pb2.PhotoVerdict:
         try:
             image = Image.open(io.BytesIO(data))
+            # Image.open só lê o cabeçalho: o tamanho já é conhecido aqui, antes
+            # de gastar memória decodificando os pixels.
+            if image.width * image.height > config.MAX_IMAGE_PIXELS:
+                log.warning(
+                    "foto %s tem %dx%d px, acima do limite; veredito UNSPECIFIED", photo_id, *image.size
+                )
+                return _to_proto(photo_id, _UNREADABLE)
             image.load()  # força a leitura agora, para o erro aparecer aqui
             image = image.convert("RGB")
-        except (UnidentifiedImageError, OSError, ValueError):
+        except (UnidentifiedImageError, Image.DecompressionBombError, OSError, ValueError):
             log.warning("foto %s não abriu; veredito UNSPECIFIED", photo_id)
             return _to_proto(photo_id, _UNREADABLE)
-        boxes = self._detector.detect(image)
-        scores = self._zeroshot.classify(image)
-        sharpness = measure(image, largest_box(boxes))
-        return _to_proto(photo_id, curate(boxes, scores, sharpness, image.width, image.height))
+        try:
+            boxes = self._detector.detect(image)
+            scores = self._zeroshot.classify(image)
+            sharpness = measure(image, largest_box(boxes))
+            return _to_proto(photo_id, curate(boxes, scores, sharpness, image.width, image.height))
+        except Exception:
+            # Qualquer erro nos modelos ou na regra também é "da foto": se ele
+            # derrubasse o lote, o worker repetiria o mesmo lote e cairia de novo.
+            # log.exception grava a pilha do erro para investigar depois.
+            log.exception("erro ao classificar a foto %s; veredito UNSPECIFIED", photo_id)
+            return _to_proto(photo_id, _UNREADABLE)
 
 
 def _to_proto(photo_id: str, v: Verdict) -> curator_pb2.PhotoVerdict:

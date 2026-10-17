@@ -14,6 +14,12 @@ MODEL_VERSION = "rtdetr-r50vd+openclip-b32@1"
 # Lote máximo por chamada (o contrato diz 8: bem abaixo dos 4 MB do gRPC).
 MAX_BATCH = 8
 
+# Maior imagem aceita, em pixels. A variante medium tem até 800 px de largura
+# (perto de 1 milhão de pixels); 4096 x 4096 dá folga de sobra. Acima disso a
+# foto nem é decodificada: um WebP de poucos KB pode descrever uma imagem
+# gigante (a "bomba de descompressão") e estourar a memória do container.
+MAX_IMAGE_PIXELS = 4096 * 4096
+
 # Detector: só caixas da classe "bird" com confiança a partir daqui contam como ave.
 DETECTOR_MIN_SCORE = 0.5
 
