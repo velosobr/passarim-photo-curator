@@ -58,7 +58,7 @@ passarim-proto = { git = "https://github.com/velosobr/passarim-proto", tag = "v0
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 # "models" marca os testes que precisam dos pesos de verdade (lentos, cerca de
-# 600 MB). Rodam só quando pedidos: pytest -m models.
+# 750 MB). Rodam só quando pedidos: pytest -m models.
 markers = ["models: precisa dos pesos dos modelos (CURATOR_MODELS_DIR)"]
 addopts = "-m 'not models'"
 

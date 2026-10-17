@@ -124,7 +124,9 @@ def curate(
     if clip.get("no_bird", 0.0) >= config.NO_BIRD_STRONG and best_score < config.WEAK_DETECTION:
         return verdict(Category.NO_BIRD, clip["no_bird"])
 
-    # 5. Bando pelo detector.
+    # 5. Bando pelo detector. A confiança soma "flock" e "single" do CLIP: com
+    # duas aves grandes (um casal), o CLIP costuma dividir a probabilidade entre
+    # as duas frases, e a soma diz o quanto ele acha que a foto mostra aves.
     if len(clamped) >= 2 and not _has_dominant(clamped):
         return verdict(Category.FLOCK, min(clip.get("flock", 0.0) + clip.get("single", 0.0), biggest.score))
 

@@ -27,7 +27,7 @@ class Category(enum.IntEnum):
     OTHER = 8
 
 
-# As "classes" do CLIP: cada uma tem algumas frases (ver zeroshot.py) e recebe
+# As "classes" do CLIP: cada uma tem algumas frases (ver prompts.py) e recebe
 # uma probabilidade. Não são as mesmas categorias do contrato: "in_hand" e
 # "drawing" viram OTHER, e "single" e "flock" ajudam a confirmar o detector.
 CLIP_CLASSES: tuple[str, ...] = (
