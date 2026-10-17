@@ -11,6 +11,7 @@ Quem usa: server.py. Depende de: config.py e types.py.
 from collections.abc import Mapping, Sequence
 
 from photo_curator import config
+from photo_curator.config import Thresholds
 from photo_curator.types import Box, Category, Verdict
 
 # Classes do CLIP que descartam a foto, e a categoria que cada uma vira.
@@ -48,11 +49,11 @@ def _touches_edge(box: Box, width: int, height: int) -> bool:
     return box.x0 <= mx or box.y0 <= my or box.x1 >= width - mx or box.y1 >= height - my
 
 
-def _has_dominant(boxes: Sequence[Box]) -> bool:
-    """Com duas aves ou mais, a maior é "dominante" se tem pelo menos DOMINANCE
-    vezes a área da segunda maior."""
+def _has_dominant(boxes: Sequence[Box], dominance: float) -> bool:
+    """Com duas aves ou mais, a maior é "dominante" se tem pelo menos
+    `dominance` vezes a área da segunda maior."""
     areas = sorted((b.area for b in boxes), reverse=True)
-    return areas[0] >= config.DOMINANCE * areas[1]
+    return areas[0] >= dominance * areas[1]
 
 
 def curate(
@@ -61,6 +62,7 @@ def curate(
     sharpness: float,
     width: int,
     height: int,
+    thresholds: Thresholds = config.DEFAULT_THRESHOLDS,
 ) -> Verdict:
     """Decide a categoria de uma foto.
 
@@ -68,6 +70,8 @@ def curate(
     clip: probabilidade de cada classe do CLIP (somam 1).
     sharpness: nitidez da maior ave (ou da foto), de 0 a 1.
     width, height: tamanho da foto em pixels.
+    thresholds: os limites da regra; o padrão vem do config.py. Só a
+    calibração passa outros.
 
     A ordem dos passos:
     1. Descarte por conteúdo (ninho, ovos, pena, morta, na mão, ilustração). Vem
@@ -100,20 +104,20 @@ def curate(
     passed = [
         (clip.get(name, 0.0), name)
         for name in _DISCARD_CATEGORY
-        if clip.get(name, 0.0) >= config.DISCARD_MIN[name]
+        if clip.get(name, 0.0) >= thresholds.discard_min[name]
     ]
     if passed:
         prob, name = max(passed)
         return verdict(_DISCARD_CATEGORY[name], prob)
 
     # 2. Bando pelo CLIP.
-    if clip.get("flock", 0.0) >= config.FLOCK_MIN:
+    if clip.get("flock", 0.0) >= thresholds.flock_min:
         return verdict(Category.FLOCK, clip["flock"])
 
     # 3. Nenhuma ave detectada.
     if biggest is None:
         no_bird = clip.get("no_bird", 0.0)
-        if no_bird >= config.NO_BIRD_MIN:
+        if no_bird >= thresholds.no_bird_min:
             return verdict(Category.NO_BIRD, no_bird)
         # OTHER: o CLIP acha que há algo além de paisagem; a confiança é o quanto
         # ele NÃO acha que é paisagem.
@@ -121,13 +125,13 @@ def curate(
 
     # 4. Detecção falsa.
     best_score = max(b.score for b in clamped)
-    if clip.get("no_bird", 0.0) >= config.NO_BIRD_STRONG and best_score < config.WEAK_DETECTION:
+    if clip.get("no_bird", 0.0) >= thresholds.no_bird_strong and best_score < thresholds.weak_detection:
         return verdict(Category.NO_BIRD, clip["no_bird"])
 
     # 5. Bando pelo detector. A confiança soma "flock" e "single" do CLIP: com
     # duas aves grandes (um casal), o CLIP costuma dividir a probabilidade entre
     # as duas frases, e a soma diz o quanto ele acha que a foto mostra aves.
-    if len(clamped) >= 2 and not _has_dominant(clamped):
+    if len(clamped) >= 2 and not _has_dominant(clamped, thresholds.dominance):
         return verdict(Category.FLOCK, min(clip.get("flock", 0.0) + clip.get("single", 0.0), biggest.score))
 
     # 6. Ave sozinha: a confiança é a menor entre o CLIP ("single") e o detector.

@@ -7,6 +7,10 @@ ficam todos aqui, num lugar só, e não espalhados pelo código.
 Quem usa: rules.py, detector.py, sharpness.py e server.py.
 """
 
+from collections.abc import Mapping
+from dataclasses import dataclass
+from types import MappingProxyType
+
 # Versão dos modelos + da regra. Muda quando um modelo, uma frase do CLIP ou um
 # limite muda: o worker grava este texto em cada foto e sabe o que refazer.
 MODEL_VERSION = "rtdetr-r50vd+openclip-b32@1"
@@ -57,3 +61,33 @@ EDGE_TOLERANCE = 0.02
 # [SHARPNESS_LOG_MIN, SHARPNESS_LOG_MAX] para [0, 1].
 SHARPNESS_LOG_MIN = 1.0
 SHARPNESS_LOG_MAX = 3.5
+
+
+@dataclass(frozen=True)
+class Thresholds:
+    """Os limites da regra (rules.curate) num objeto só.
+
+    O serviço usa sempre DEFAULT_THRESHOLDS, montado das constantes acima. A
+    calibração (photo_curator.reference.calibrate) cria cópias com um limite
+    trocado, com dataclasses.replace, e mede cada uma: assim ela experimenta
+    milhares de combinações sem mexer neste arquivo.
+    """
+
+    discard_min: Mapping[str, float]
+    flock_min: float
+    no_bird_min: float
+    no_bird_strong: float
+    weak_detection: float
+    dominance: float
+
+
+# MappingProxyType é uma "vista só de leitura" de um dicionário: ninguém muda
+# os limites padrão por engano no meio da execução.
+DEFAULT_THRESHOLDS = Thresholds(
+    discard_min=MappingProxyType(dict(DISCARD_MIN)),
+    flock_min=FLOCK_MIN,
+    no_bird_min=NO_BIRD_MIN,
+    no_bird_strong=NO_BIRD_STRONG,
+    weak_detection=WEAK_DETECTION,
+    dominance=DOMINANCE,
+)
