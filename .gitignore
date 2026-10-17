@@ -1,0 +1,14 @@
+# Arquivos que o git ignora.
+# .venv é o ambiente virtual que o uv cria: cada máquina gera o seu.
+.venv/
+# Cache do Python e das ferramentas de teste e lint.
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# Pesos baixados localmente para os testes com modelos de verdade (ver README).
+models/
+# Lixo do macOS e das IDEs.
+.DS_Store
+.idea/
+.vscode/
