@@ -25,6 +25,11 @@ FROM python:3.13-slim
 WORKDIR /app
 COPY --from=build /app /app
 COPY --from=build /opt/models /opt/models
+# O pip da imagem base não é usado em execução (as dependências já estão na
+# .venv) e traz cópias próprias de bibliotecas (urllib3, msgpack...) que o
+# Trivy acusa como vulneráveis. Removemos o pip e o instalador dele (ensurepip).
+RUN rm -rf /usr/local/lib/python3.13/site-packages/pip /usr/local/lib/python3.13/site-packages/pip-*.dist-info \
+    /usr/local/lib/python3.13/ensurepip /usr/local/bin/pip*
 # Usuário sem privilégios: se alguém explorar uma falha, não vira root.
 RUN useradd --system --uid 10001 --no-create-home curator
 USER 10001
