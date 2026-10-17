@@ -1,0 +1,37 @@
+# CI do curador. Roda em todo PR e em todo push na main.
+# - test: ruff (estilo e erros) e pytest (sem os testes que precisam dos pesos);
+# - security: gitleaks procura segredos no histórico do git.
+# Os jobs com os modelos de verdade e a imagem Docker entram no PR seguinte.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # setup-uv instala o uv; "enable-cache" guarda os pacotes baixados entre
+      # execuções (o torch tem centenas de MB).
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: "0.13.1"
+          enable-cache: true
+      # --frozen: instala exatamente o uv.lock e falha se ele estiver desatualizado.
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest -q
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # o gitleaks olha o histórico inteiro
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
