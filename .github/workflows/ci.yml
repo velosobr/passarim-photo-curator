@@ -1,7 +1,8 @@
 # CI do curador. Roda em todo PR e em todo push na main.
 # - test: ruff (estilo e erros) e pytest (sem os testes que precisam dos pesos);
 # - security: gitleaks procura segredos no histórico do git.
-# Os jobs com os modelos de verdade e a imagem Docker entram no PR seguinte.
+# - models: os modelos de verdade nas fotos reais;
+# - security também constrói a imagem, roda o self-check sem rede e o Trivy.
 name: ci
 
 on:
@@ -26,6 +27,27 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run pytest -q
 
+  # Testes com os modelos de verdade nas fotos reais (lento: ~750 MB de pesos).
+  # O cache guarda a pasta dos pesos; a chave é o hash do weights.py, então ele
+  # só baixa de novo quando uma revisão ou um hash muda.
+  models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: "0.13.1"
+          enable-cache: true
+      - run: uv sync --frozen
+      - uses: actions/cache@v4
+        with:
+          path: models
+          key: weights-${{ hashFiles('src/photo_curator/weights.py') }}
+      - run: uv run python -m photo_curator.weights models
+      - run: uv run pytest -m models -q
+        env:
+          CURATOR_MODELS_DIR: models
+
   security:
     runs-on: ubuntu-latest
     steps:
@@ -35,3 +57,19 @@ jobs:
       - uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: build da imagem
+        run: docker build -t passarim-photo-curator:ci .
+      # A imagem classifica as fotos reais SEM rede e com o sistema de arquivos
+      # só de leitura: prova que nada é baixado em execução.
+      - name: self-check sem rede
+        run: >
+          docker run --rm --network none --read-only --tmpfs /tmp
+          -v "$PWD/tests/fixtures:/fixtures:ro"
+          passarim-photo-curator:ci python -m photo_curator.selfcheck /fixtures
+      # Trivy procura vulnerabilidades na imagem. Falha em HIGH/CRITICAL.
+      - uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: passarim-photo-curator:ci
+          severity: HIGH,CRITICAL
+          exit-code: "1"
+          ignore-unfixed: true

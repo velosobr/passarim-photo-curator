@@ -1,0 +1,10 @@
+# O que NÃO vai para o contexto do docker build: deixa o build rápido e evita
+# copiar o ambiente local, os pesos baixados à mão e os testes.
+.venv
+models
+tests
+.git
+.github
+**/__pycache__
+.ruff_cache
+.pytest_cache

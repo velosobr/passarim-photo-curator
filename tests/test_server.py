@@ -1,6 +1,6 @@
 """Testes do servidor gRPC com modelos FALSOS.
 
-Por que falsos: os modelos de verdade levam ~1 s por foto e precisam de ~600 MB
+Por que falsos: os modelos de verdade levam ~1 s por foto e precisam de ~750 MB
 de pesos. Aqui queremos testar o servidor (lote, ordem, erros, health check),
 não os modelos. Os falsos devolvem respostas fixas escolhidas pelo tamanho da
 imagem, que cada teste controla.
