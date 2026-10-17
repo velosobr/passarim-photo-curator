@@ -6,6 +6,8 @@ carregam modelo nenhum e rodam em milissegundos. Cada caso é uma foto
 "imaginada" com números escolhidos para cair num ramo da regra.
 """
 
+import dataclasses
+
 import pytest
 
 from photo_curator import config
@@ -147,3 +149,22 @@ def test_largest_box_picks_biggest_area():
     small, big = bird(0, 0, 10, 10), bird(0, 0, 100, 100)
     assert largest_box([small, big]) is big
     assert largest_box([]) is None
+
+
+def test_custom_thresholds_change_the_decision():
+    # Com o limite padrão (0,6), "flock" 0,9 é bando; com 0,95, não é mais, e a
+    # foto sem detecção cai em OTHER. É assim que a calibração experimenta limites.
+    strict = dataclasses.replace(config.DEFAULT_THRESHOLDS, flock_min=0.95)
+    assert curate([], clip(flock=0.9), 0.4, W, H).category is Category.FLOCK
+    assert curate([], clip(flock=0.9), 0.4, W, H, strict).category is Category.OTHER
+
+
+def test_default_thresholds_mirror_the_constants():
+    t = config.DEFAULT_THRESHOLDS
+    assert dict(t.discard_min) == config.DISCARD_MIN
+    assert (t.flock_min, t.no_bird_min, t.no_bird_strong) == (
+        config.FLOCK_MIN,
+        config.NO_BIRD_MIN,
+        config.NO_BIRD_STRONG,
+    )
+    assert (t.weak_detection, t.dominance) == (config.WEAK_DETECTION, config.DOMINANCE)

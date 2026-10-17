@@ -1,0 +1,257 @@
+<title>Revisão de fotos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!--
+  review/index.html — página de revisão do conjunto de referência do curador.
+
+  Quem usa: o dono do Passarim, no claude.ai (publicada como Artifact pelo
+  executor do plano A2, com a capacidade "db"). O Artifact embrulha este
+  arquivo num documento completo (doctype, head e body) na publicação, por
+  isso ele começa direto pelo título e pelo estilo.
+
+  Como funciona:
+  - lê reference.json (gerado pelo scripts/make_review_page.py) e mostra as
+    fotos em grade, cada uma com a sugestão de rótulo (borda tracejada);
+  - um toque num rótulo grava a escolha no banco compartilhado do Artifact,
+    coleção "labels", documento "labels/<photo_id>" = {label, at};
+  - o banco avisa a página a cada mudança (onSnapshot), então dá para revisar
+    em dois aparelhos ao mesmo tempo;
+  - o executor exporta a coleção "labels" para tests/reference/review.json.
+
+  Sem biblioteca: HTML, CSS e JavaScript simples. Os textos que vêm dos dados
+  entram com textContent (nunca innerHTML), para um nome estranho nunca virar
+  código na página.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+  /* Layout: cabeçalho fixo com o progresso e o filtro; grade de fichas de campo,
+     uma por foto, com os rótulos como botões logo abaixo da imagem. */
+  /* Cores como "tokens" (variáveis CSS): os temas escuros só trocam os valores. */
+  :root {
+    --bg: #f3f4ef;        /* papel de caderno de campo, levemente esverdeado */
+    --card: #ffffff;
+    --text: #1c211d;
+    --muted: #5d665f;
+    --line: #d6dbd3;
+    --accent: #2f6a4c;    /* verde-mata: rótulo escolhido */
+    --accent-text: #ffffff;
+    --hint: #a2541c;      /* barro: a sugestão que veio da busca */
+    --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131714; --card: #1c211d; --text: #e7ece6; --muted: #9ba59d;
+      --line: #313a33; --accent: #74c395; --accent-text: #0c1a12; --hint: #e39a5f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131714; --card: #1c211d; --text: #e7ece6; --muted: #9ba59d;
+    --line: #313a33; --accent: #74c395; --accent-text: #0c1a12; --hint: #e39a5f;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text); font: 15px/1.45 var(--font-body);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  header {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 1;
+    background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 12px;
+    display: grid; gap: 6px;
+  }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  h1 { font-size: 18px; font-weight: 600; margin: 0 8px 0 0; text-wrap: balance; }
+  .status { font-size: 13px; color: var(--muted); margin: 0; font-variant-numeric: tabular-nums; }
+  select, .action {
+    font: inherit; font-size: 14px; padding: 6px 10px; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--card); color: var(--text);
+  }
+  .action { cursor: pointer; }
+  .action.armed { border-color: var(--hint); color: var(--hint); }
+  main {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px; padding-block: 16px;
+  }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; min-width: 0; }
+  .card.done { border-color: var(--accent); }
+  .card img {
+    display: block; width: 100%; max-width: 100%; aspect-ratio: 4 / 3;
+    object-fit: contain; background: var(--line);
+  }
+  .meta { display: grid; gap: 2px; padding: 8px 10px 4px; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+  .meta i { color: var(--text); }
+  .meta .id { font-family: var(--font-mono); font-size: 12px; }
+  .meta a { color: inherit; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px 10px 10px; }
+  .chip {
+    font: inherit; font-size: 12px; padding: 4px 8px; border-radius: 999px;
+    border: 1px solid var(--line); background: transparent; color: var(--text); cursor: pointer;
+  }
+  .chip.proposed { border-style: dashed; border-color: var(--hint); }
+  .chip.on { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+  .empty { grid-column: 1 / -1; color: var(--muted); padding: 24px 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<header>
+  <div class="bar">
+    <h1>Revisão de fotos</h1>
+    <select id="filter" aria-label="Quais fotos mostrar"></select>
+    <button id="accept" class="action" type="button">Aceitar sugestões visíveis</button>
+  </div>
+  <p id="status" class="status">Carregando as fotos…</p>
+  <p class="status">Borda tracejada: a sugestão que veio da busca. Um toque escolhe o rótulo; “Ignorar” tira a foto da conta.</p>
+</header>
+<main id="grid"></main>
+
+<script>
+// Rótulos possíveis: as categorias do contrato (menos UNSPECIFIED) e "ignorar".
+const LABELS = [
+  ["SINGLE_BIRD", "Ave sozinha"], ["FLOCK", "Bando"], ["NEST", "Ninho"], ["EGGS", "Ovos"],
+  ["FEATHER", "Pena"], ["DEAD_BIRD", "Ave morta"], ["NO_BIRD", "Sem ave"], ["OTHER", "Outro"],
+  ["EXCLUDED", "Ignorar"],
+];
+
+let photos = [];             // linhas do manifesto (reference.json)
+const chosen = new Map();    // photo_id -> rótulo escolhido no banco
+let labelsCollection = null; // coleção "labels" do banco (null sem banco)
+let armedUntil = 0;          // "aceitar sugestões" pede um segundo toque
+
+const $ = (id) => document.getElementById(id);
+
+// O rótulo que vale para uma foto: o do banco; senão, o que o manifesto já
+// tinha (de uma revisão anterior); senão, nenhum.
+function currentLabel(p) { return chosen.get(p.photo_id) || p.label || ""; }
+
+function visiblePhotos() {
+  const f = $("filter").value;
+  if (f === "todo") return photos.filter((p) => !currentLabel(p));
+  if (f === "all") return photos;
+  return photos.filter((p) => (currentLabel(p) || p.proposed_label) === f);
+}
+
+function setupFilter() {
+  const options = [["todo", "Não revisadas"], ["all", "Todas"], ...LABELS];
+  for (const [value, text] of options) {
+    const o = document.createElement("option");
+    o.value = value; o.textContent = text;
+    $("filter").append(o);
+  }
+  $("filter").addEventListener("change", render);
+}
+
+function render() {
+  const done = photos.filter((p) => currentLabel(p)).length;
+  const base = `${done} de ${photos.length} revisadas`;
+  $("status").textContent = labelsCollection ? base : `${base} · sem banco: as escolhas não são gravadas`;
+  const grid = $("grid");
+  grid.replaceChildren();
+  const visible = visiblePhotos();
+  if (!visible.length) {
+    const p = document.createElement("p");
+    p.className = "empty";
+    p.textContent = photos.length ? "Nenhuma foto neste filtro." : "As fotos aparecem aqui assim que carregarem.";
+    grid.append(p);
+  }
+  for (const p of visible) grid.append(card(p));
+}
+
+function card(p) {
+  const label = currentLabel(p);
+  const el = document.createElement("article");
+  el.className = "card" + (label ? " done" : "");
+
+  const img = document.createElement("img");
+  img.src = `photos/${p.photo_id}.webp`;
+  img.alt = `Foto ${p.photo_id}, ${p.species}`;
+  img.loading = "lazy"; // só baixa quando a foto chega perto da tela
+  el.append(img);
+
+  // Nome científico em itálico: a convenção da nomenclatura binomial.
+  const meta = document.createElement("div");
+  meta.className = "meta";
+  const name = document.createElement("i");
+  name.textContent = p.species || "espécie não informada";
+  const line = document.createElement("span");
+  const link = document.createElement("a");
+  link.href = p.url; link.target = "_blank"; link.rel = "noopener";
+  link.textContent = "observação";
+  const id = document.createElement("span");
+  id.className = "id";
+  id.textContent = `#${p.photo_id}`;
+  line.append(id, ` · busca “${p.source}” · `, link);
+  meta.append(name, line);
+  el.append(meta);
+
+  const chips = document.createElement("div");
+  chips.className = "chips";
+  for (const [value, text] of LABELS) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (value === label ? " on" : "") + (value === p.proposed_label ? " proposed" : "");
+    b.textContent = text;
+    b.setAttribute("aria-pressed", String(value === label));
+    b.addEventListener("click", () => choose(p.photo_id, value));
+    chips.append(b);
+  }
+  el.append(chips);
+  return el;
+}
+
+async function choose(photoId, label) {
+  if (!labelsCollection) return;
+  chosen.set(photoId, label); // mostra na hora; o banco confirma pelo onSnapshot
+  render();
+  try {
+    await labelsCollection.doc(photoId).set({ label, at: new Date().toISOString() });
+  } catch (e) {
+    $("status").textContent = `A escolha da foto ${photoId} não foi gravada (${e.message || e}). Toque de novo.`;
+  }
+}
+
+// Aceita a sugestão de todas as fotos visíveis ainda sem rótulo. Pede um
+// segundo toque em até 4 s (o visualizador não mostra janela de confirmação).
+async function acceptVisible() {
+  if (!labelsCollection) return;
+  const btn = $("accept");
+  if (Date.now() > armedUntil) {
+    armedUntil = Date.now() + 4000;
+    btn.classList.add("armed");
+    btn.textContent = "Toque de novo para confirmar";
+    setTimeout(() => { btn.classList.remove("armed"); btn.textContent = "Aceitar sugestões visíveis"; }, 4000);
+    return;
+  }
+  armedUntil = 0;
+  btn.classList.remove("armed");
+  btn.textContent = "Aceitar sugestões visíveis";
+  const todo = visiblePhotos().filter((p) => !currentLabel(p));
+  for (const p of todo) await choose(p.photo_id, p.proposed_label);
+}
+
+async function start() {
+  setupFilter();
+  $("accept").addEventListener("click", acceptVisible);
+  render();
+  photos = await (await fetch("reference.json")).json();
+  render();
+  // claude.use("db") devolve o banco, ou null quando a página roda fora do
+  // claude.ai (ou sem permissão): aí ela só mostra as fotos.
+  const db = window.claude ? await window.claude.use("db") : null;
+  if (!db) { render(); return; }
+  labelsCollection = db.collection("labels");
+  labelsCollection.limit(1000).onSnapshot(
+    (snap) => {
+      chosen.clear();
+      for (const d of snap.docs) chosen.set(d.id, d.data().label);
+      render();
+    },
+    (e) => { $("status").textContent = `O banco da página não respondeu (${e.message || e}). Recarregue a página.`; },
+  );
+}
+
+start();
+</script>

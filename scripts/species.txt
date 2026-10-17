@@ -1,0 +1,44 @@
+# Nomes científicos das 41 espécies do Passarim, tirados de
+# passarim-catalog/content/species/*.yaml (campo scientific_name).
+# Para atualizar: for f in ../passarim-catalog/content/species/*.yaml; do sed -n 's/^scientific_name: *//p' "$f"; done | sort
+Amazona aestiva
+Anodorhynchus hyacinthinus
+Ara ararauna
+Ardea alba
+Athene cunicularia
+Brotogeris tirica
+Caracara plancus
+Cariama cristata
+Columbina talpacoti
+Coragyps atratus
+Crotophaga ani
+Cyanocorax caeruleus
+Cyanopsitta spixii
+Cyphorhinus arada
+Dryocopus lineatus
+Eudocimus ruber
+Eupetomena macroura
+Eurypyga helias
+Furnarius rufus
+Guaruba guarouba
+Harpia harpyja
+Jabiru mycteria
+Megaceryle torquata
+Mitu mitu
+Momotus momota
+Paroaria coronata
+Pitangus sulphuratus
+Pygochelidon cyanoleuca
+Ramphastos toco
+Ramphocelus bresilia
+Rhea americana
+Saltator similis
+Sicalis flaveola
+Tangara seledon
+Theristicus caudatus
+Thraupis sayaca
+Tigrisoma lineatum
+Troglodytes musculus
+Turdus rufiventris
+Tyrannus savana
+Vanellus chilensis
