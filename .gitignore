@@ -12,3 +12,7 @@ models/
 .DS_Store
 .idea/
 .vscode/
+# Página de revisão montada pelo scripts/make_review_page.py (sai do manifesto).
+build/
+# Cache das saídas dos modelos no conjunto de referência (reference/features.py).
+.cache/
