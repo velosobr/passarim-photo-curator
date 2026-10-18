@@ -32,9 +32,10 @@ class Source:
     photos_per_observation: int
 
 
-# Por espécie: 2 observações, 1 foto de cada (a primeira, que é a que o worker
-# vê primeiro). 41 espécies dão até 82 fotos.
-SPECIES_OBSERVATIONS = 2
+# Por espécie: 4 observações, 1 foto de cada (a primeira, que é a que o worker
+# vê primeiro). 41 espécies dão até 164 fotos. Começou com 2; subiu para 4 na
+# montagem (2026-10-17) para a medição ter o mínimo de 50 aves sozinhas.
+SPECIES_OBSERVATIONS = 4
 SPECIES_PHOTOS = 1
 
 
@@ -55,14 +56,16 @@ def _hard(name: str, label: str, observations: int, **params: str) -> Source:
     return Source(name, {"taxon_id": AVES_TAXON_ID, **params}, label, observations, 2)
 
 
+# Números aumentados na montagem (2026-10-17) para a medição ter o mínimo de
+# 40 descartes: muita foto de "ninho" ou "morto" mostra uma ave sozinha.
 HARD_SOURCES: tuple[Source, ...] = (
-    _hard("dead", "DEAD_BIRD", 12, term_id="17", term_value_id="19"),
-    _hard("egg", "EGGS", 6, term_id="1", term_value_id="7"),
-    _hard("egg", "EGGS", 6, term_id="22", term_value_id="30"),
-    _hard("feather", "FEATHER", 12, term_id="22", term_value_id="23"),
-    _hard("nest", "NEST", 12, term_id="22", term_value_id="35"),
-    _hard("bone", "DEAD_BIRD", 4, term_id="22", term_value_id="27"),
+    _hard("dead", "DEAD_BIRD", 18, term_id="17", term_value_id="19"),
+    _hard("egg", "EGGS", 9, term_id="1", term_value_id="7"),
+    _hard("egg", "EGGS", 9, term_id="22", term_value_id="30"),
+    _hard("feather", "FEATHER", 18, term_id="22", term_value_id="23"),
+    _hard("nest", "NEST", 20, term_id="22", term_value_id="35"),
+    _hard("bone", "DEAD_BIRD", 6, term_id="22", term_value_id="27"),
     _hard("in_hand", "OTHER", 4, q="anilhamento", search_on="description"),
-    _hard("in_hand", "OTHER", 6, q="banding", search_on="description"),
+    _hard("in_hand", "OTHER", 12, q="banding", search_on="description"),
     _hard("flock", "FLOCK", 12, q="bando", search_on="description"),
 )

@@ -71,3 +71,31 @@ def test_predict_uses_given_thresholds():
     )
     assert ft.predict(f) == "FLOCK"
     assert ft.predict(f, dataclasses.replace(config.DEFAULT_THRESHOLDS, flock_min=0.8)) == "OTHER"
+
+
+def test_compute_all_names_corrupt_image(tmp_path):
+    # Arquivo cortado no meio (download interrompido): o erro tem que dizer qual foto.
+    write_photo(tmp_path, "42")
+    path = tmp_path / "photos" / "42.webp"
+    path.write_bytes(path.read_bytes()[:40])
+    with pytest.raises(ValueError, match="42"):
+        ft.compute_all([row("42")], tmp_path, CountingDetector(), FakeZeroShot(), tmp_path / "c.json")
+
+
+def test_compute_all_fails_on_missing_image_even_if_cached(tmp_path):
+    write_photo(tmp_path, "1")
+    cache = tmp_path / "cache.json"
+    ft.compute_all([row("1")], tmp_path, CountingDetector(), FakeZeroShot(), cache)
+    (tmp_path / "photos" / "1.webp").unlink()
+    with pytest.raises(FileNotFoundError, match="1"):
+        ft.compute_all([row("1")], tmp_path, CountingDetector(), FakeZeroShot(), cache)
+
+
+def test_compute_all_recomputes_when_file_changes(tmp_path):
+    write_photo(tmp_path, "1")
+    detector, cache = CountingDetector(), tmp_path / "cache.json"
+    ft.compute_all([row("1")], tmp_path, detector, FakeZeroShot(), cache)
+    Image.new("RGB", (300, 200), (10, 10, 10)).save(tmp_path / "photos" / "1.webp", format="WEBP")
+    again = ft.compute_all([row("1")], tmp_path, detector, FakeZeroShot(), cache)
+    assert detector.calls == 2
+    assert again["1"].width == 300

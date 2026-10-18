@@ -24,7 +24,9 @@ def main() -> int:
     if not models_dir:
         sys.exit("defina CURATOR_MODELS_DIR (pasta dos pesos)")
     rows = manifest.read(REFERENCE / "manifest.csv")
-    half = split.split(rows)[split.MEASUREMENT]
+    # As observações já sorteadas ficam na metade gravada em split.json.
+    frozen = split.read_frozen(REFERENCE / "split.json")
+    half = split.split(rows, frozen=frozen)[split.MEASUREMENT]
     problems = split.check_minimum(half)
     if problems:
         print("medição pequena demais:", *problems, sep="\n  ")
