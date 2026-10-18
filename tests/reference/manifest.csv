@@ -1,0 +1,298 @@
+photo_id,observation_id,species,proposed_label,label,author,license,url,source
+153491,106893,Pyrrhura frontalis,OTHER,SINGLE_BIRD,Tim Hirsch,cc-by,http://www.inaturalist.org/observations/106893,in_hand
+1104518,869981,Theristicus caudatus,SINGLE_BIRD,SINGLE_BIRD,Douglas Trent,cc-by-nc,http://www.inaturalist.org/observations/869981,species
+5643263,4660947,Tangara seledon,SINGLE_BIRD,OTHER,Claudia Komesu,cc-by-nc,http://www.inaturalist.org/observations/4660947,species
+9056202,7055321,Selenidera maculirostris,DEAD_BIRD,EXCLUDED,tlaloc27,cc-by,https://www.inaturalist.org/observations/7055321,dead
+9867251,7558829,Tigrisoma lineatum,SINGLE_BIRD,SINGLE_BIRD,Greg Lasley,cc-by-nc,https://www.inaturalist.org/observations/7558829,species
+9867600,7559109,Theristicus caudatus,SINGLE_BIRD,SINGLE_BIRD,Greg Lasley,cc-by-nc,https://www.inaturalist.org/observations/7559109,species
+9867912,7559243,Jabiru mycteria,SINGLE_BIRD,SINGLE_BIRD,Greg Lasley,cc-by-nc,https://www.inaturalist.org/observations/7559243,species
+9892754,7574578,Thraupis sayaca,SINGLE_BIRD,SINGLE_BIRD,Greg Lasley,cc-by-nc,https://www.inaturalist.org/observations/7574578,species
+11270559,8456485,Caracara plancus,SINGLE_BIRD,OTHER,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/8456485,species
+12015752,8922854,Cyphorhinus arada,SINGLE_BIRD,SINGLE_BIRD,Pedro Beja,cc-by-nc,https://www.inaturalist.org/observations/8922854,species
+17026850,11897637,Trochilidae,EGGS,EGGS,Thiago Mahlmann,cc-by-nc,https://www.inaturalist.org/observations/11897637,egg
+19407645,13260726,Crypturellus soui albigularis,EGGS,EGGS,Marcelo Barbosa,cc-by-nc,https://www.inaturalist.org/observations/13260726,egg
+19407671,13260726,Crypturellus soui albigularis,EGGS,EGGS,Marcelo Barbosa,cc-by-nc,https://www.inaturalist.org/observations/13260726,egg
+21071215,14206122,Brotogeris tirica,SINGLE_BIRD,SINGLE_BIRD,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/14206122,species
+21292172,14331137,Tangara seledon,SINGLE_BIRD,SINGLE_BIRD,visionsamazoniennes,cc-by-nc,https://www.inaturalist.org/observations/14331137,species
+25558957,16916699,Brotogeris tirica,SINGLE_BIRD,SINGLE_BIRD,José Valério G. Escrig,cc-by-nc,https://www.inaturalist.org/observations/16916699,species
+26029362,17176293,Sicalis flaveola,SINGLE_BIRD,OTHER,Heitor Fagundes Beloch,cc-by-nc,https://www.inaturalist.org/observations/17176293,species
+27184451,17813583,Amazona aestiva,SINGLE_BIRD,FEATHER,alessandradalia,cc-by-sa,https://www.inaturalist.org/observations/17813583,species
+27184715,17813583,Amazona aestiva,FEATHER,FEATHER,alessandradalia,cc-by-sa,https://www.inaturalist.org/observations/17813583,feather
+27783671,18176733,Furnarius rufus,SINGLE_BIRD,NEST,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/18176733,species
+29229562,19054165,Pyrrhura pfrimeri,NEST,FLOCK,Karina Avila,cc-by,https://www.inaturalist.org/observations/19054165,nest
+29361583,19127512,Furnarius rufus,SINGLE_BIRD,NEST,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/19127512,species
+30742718,19928258,Amazona aestiva,SINGLE_BIRD,SINGLE_BIRD,Douglas,cc-by,https://www.inaturalist.org/observations/19928258,species
+43670822,28032485,Guaruba guarouba,SINGLE_BIRD,SINGLE_BIRD,Antonio Carlos Silva Moraes,cc-by-nc,https://www.inaturalist.org/observations/28032485,species
+53471773,34006714,Columbina talpacoti,SINGLE_BIRD,OTHER,Diogo Luiz,cc-by,https://www.inaturalist.org/observations/34006714,species
+54837667,34814018,Charadrius semipalmatus,FLOCK,SINGLE_BIRD,Augusto Borges,cc-by-nc,https://www.inaturalist.org/observations/34814018,flock
+56328774,35701616,Leptodon forbesi,FEATHER,FEATHER,B. Phalan,cc-by,https://www.inaturalist.org/observations/35701616,feather
+57171904,36187410,Pitangus sulphuratus,SINGLE_BIRD,SINGLE_BIRD,Eric Fischer Rempe,cc-by-nc,https://www.inaturalist.org/observations/36187410,species
+57904002,36616531,Buteogallus coronatus,OTHER,SINGLE_BIRD,Ronald Péret,cc-by,https://www.inaturalist.org/observations/36616531,in_hand
+57904163,36616531,Buteogallus coronatus,OTHER,EXCLUDED,Ronald Péret,cc-by,https://www.inaturalist.org/observations/36616531,in_hand
+59631276,37597710,Thalassarche chlororhynchos,DEAD_BIRD,DEAD_BIRD,no rights reserved,cc0,https://www.inaturalist.org/observations/37597710,dead
+62034836,39097500,Pygochelidon cyanoleuca,SINGLE_BIRD,FLOCK,Luciana Chiyo,cc-by-nc,https://www.inaturalist.org/observations/39097500,species
+63281111,39862449,Ramphastos toco,SINGLE_BIRD,SINGLE_BIRD,Paul Steeves,cc-by-nc,https://www.inaturalist.org/observations/39862449,species
+63281280,39862470,Jabiru mycteria,SINGLE_BIRD,SINGLE_BIRD,Paul Steeves,cc-by-nc,https://www.inaturalist.org/observations/39862470,species
+67921206,42772166,Rhea americana,SINGLE_BIRD,SINGLE_BIRD,no rights reserved,cc0,https://www.inaturalist.org/observations/42772166,species
+78501041,49451331,Crotophaga ani,SINGLE_BIRD,EGGS,Henrique_Anizio,cc-by-nc,https://www.inaturalist.org/observations/49451331,species
+78501079,49451331,Crotophaga ani,EGGS,EGGS,Henrique_Anizio,cc-by-nc,https://www.inaturalist.org/observations/49451331,egg
+91700415,57487769,Paroaria coronata,SINGLE_BIRD,SINGLE_BIRD,André Zani,cc-by-nc,https://www.inaturalist.org/observations/57487769,species
+95469825,59738495,Ramphastos toco,SINGLE_BIRD,FLOCK,Diogo Luiz,cc-by,https://www.inaturalist.org/observations/59738495,species
+96518648,60365746,Thalasseus maximus,FLOCK,FLOCK,Marcio C Motta,cc-by-nc,https://www.inaturalist.org/observations/60365746,flock
+96518666,60365746,Thalasseus maximus,FLOCK,FLOCK,Marcio C Motta,cc-by-nc,https://www.inaturalist.org/observations/60365746,flock
+96762910,60509044,Anodorhynchus hyacinthinus,SINGLE_BIRD,FLOCK,Jéssica Martins,cc-by-nc-sa,https://www.inaturalist.org/observations/60509044,species
+98159954,61348662,Theristicus caudatus,SINGLE_BIRD,SINGLE_BIRD,Jorge Luiz dos Santos,cc-by-nc,https://www.inaturalist.org/observations/61348662,species
+98729447,61682975,Turdus rufiventris,SINGLE_BIRD,SINGLE_BIRD,ayan_fleischmann,cc-by-nc,https://www.inaturalist.org/observations/61682975,species
+101489703,63257044,Turdus leucomelas,NEST,NEST,Helio Lourencini,cc-by,https://www.inaturalist.org/observations/63257044,nest
+102310035,63718798,Cariama cristata,SINGLE_BIRD,SINGLE_BIRD,eduardoalexandrino,cc-by-nc,https://www.inaturalist.org/observations/63718798,species
+105952542,65791325,Nyctidromus albicollis,EGGS,EGGS,Helio Lourencini,cc-by,https://www.inaturalist.org/observations/65791325,egg
+105952584,65791325,Nyctidromus albicollis,EGGS,EGGS,Helio Lourencini,cc-by,https://www.inaturalist.org/observations/65791325,egg
+107939973,66893405,Amazona aestiva,SINGLE_BIRD,SINGLE_BIRD,tnaturalist,cc-by-nc,https://www.inaturalist.org/observations/66893405,species
+110681475,68366821,Ramphotrigon ruficauda,OTHER,SINGLE_BIRD,Maíra Santos,cc-by-nc,https://www.inaturalist.org/observations/68366821,in_hand
+117917737,72334828,Paroaria coronata,SINGLE_BIRD,SINGLE_BIRD,Luiza L Mallmann,cc-by-nc,https://www.inaturalist.org/observations/72334828,species
+118970006,72945162,Guaruba guarouba,SINGLE_BIRD,SINGLE_BIRD,Fabio Barata,cc-by-nc,https://www.inaturalist.org/observations/72945162,species
+119192382,73039677,Cyphorhinus arada,SINGLE_BIRD,SINGLE_BIRD,Luciano Bernardes,cc-by-nc,https://www.inaturalist.org/observations/73039677,species
+124873662,76336905,Rallidae,DEAD_BIRD,DEAD_BIRD,Matheus de souza ferreira,cc-by-nc,https://www.inaturalist.org/observations/76336905,dead
+124873738,76336905,Rallidae,DEAD_BIRD,DEAD_BIRD,Matheus de souza ferreira,cc-by-nc,https://www.inaturalist.org/observations/76336905,dead
+127061122,77681951,Cyanocorax caeruleus,SINGLE_BIRD,SINGLE_BIRD,Luciano Bernardes,cc-by-nc,https://www.inaturalist.org/observations/77681951,species
+128903833,78746911,Tangara seledon,SINGLE_BIRD,SINGLE_BIRD,Thomas Fuhrmann,cc-by-nc,https://www.inaturalist.org/observations/78746911,species
+130061371,79404578,Aves,DEAD_BIRD,DEAD_BIRD,Matheus de souza ferreira,cc-by-nc,https://www.inaturalist.org/observations/79404578,bone
+137644696,83790482,Morphnus guianensis,NEST,NEST,no rights reserved,cc0,https://www.inaturalist.org/observations/83790482,nest
+137645004,83790482,Morphnus guianensis,NEST,NEST,no rights reserved,cc0,https://www.inaturalist.org/observations/83790482,nest
+144156085,87436377,Anodorhynchus hyacinthinus,SINGLE_BIRD,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/87436377,species
+145255736,88063811,Ardea alba,SINGLE_BIRD,SINGLE_BIRD,Luciano Bernardes,cc-by-nc,https://www.inaturalist.org/observations/88063811,species
+146018599,88495989,Tigrisoma lineatum,SINGLE_BIRD,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/88495989,species
+150500470,91024442,Megaceryle torquata,SINGLE_BIRD,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/91024442,species
+150730261,91153536,Zebrilus undulatus,NEST,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/91153536,nest
+150730282,91153536,Zebrilus undulatus,NEST,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/91153536,nest
+154445790,93205945,Harpia harpyja,SINGLE_BIRD,SINGLE_BIRD,Sidnei Dantas,cc-by-sa,https://www.inaturalist.org/observations/93205945,species
+157256609,94774986,Athene cunicularia,SINGLE_BIRD,FLOCK,Maria Roc,cc-by-nc,https://www.inaturalist.org/observations/94774986,species
+160574683,96638599,Eupetomena macroura,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/96638599,species
+161280207,97026873,Pandion haliaetus,FEATHER,FEATHER,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/97026873,feather
+161281098,97026873,Pandion haliaetus,FEATHER,FEATHER,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/97026873,feather
+162788184,97842706,Troglodytes musculus musculus,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/97842706,species
+166253413,99697001,Brotogeris tirica,SINGLE_BIRD,FLOCK,no rights reserved,cc0,https://www.inaturalist.org/observations/99697001,species
+166321060,99732686,Ardea alba,SINGLE_BIRD,EXCLUDED,Yuri Tedéo,cc-by-nc,https://www.inaturalist.org/observations/99732686,species
+167139807,100166113,Turdus rufiventris,SINGLE_BIRD,SINGLE_BIRD,Rodrigo Paiva Lázaro,cc-by,https://www.inaturalist.org/observations/100166113,species
+167963315,100620748,Amazona aestiva,SINGLE_BIRD,SINGLE_BIRD,Nick Lima,cc-by-nc,https://www.inaturalist.org/observations/100620748,species
+169676201,101588495,Spizaetus melanoleucus,NEST,SINGLE_BIRD,no rights reserved,cc0,https://www.inaturalist.org/observations/101588495,nest
+171212841,102426448,Buteogallus urubitinga,OTHER,SINGLE_BIRD,Rodrigo Paiva Lázaro,cc-by,https://www.inaturalist.org/observations/102426448,in_hand
+173079215,103417239,Ramphastos toco,SINGLE_BIRD,SINGLE_BIRD,Jeanne Martins Nascimento,cc-by-nc,https://www.inaturalist.org/observations/103417239,species
+173330049,103547782,Zebrilus undulatus,NEST,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/103547782,nest
+173330057,103547782,Zebrilus undulatus,NEST,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/103547782,nest
+173330072,103547783,Zebrilus undulatus,EGGS,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/103547783,egg
+173330075,103547783,Zebrilus undulatus,EGGS,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/103547783,egg
+173551906,102426448,Buteogallus urubitinga,OTHER,SINGLE_BIRD,Rodrigo Paiva Lázaro,cc-by,https://www.inaturalist.org/observations/102426448,in_hand
+174171249,103987436,Zebrilus undulatus,NEST,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/103987436,nest
+174171253,103987436,Zebrilus undulatus,NEST,SINGLE_BIRD,Paul Donahue,cc-by-nc,https://www.inaturalist.org/observations/103987436,nest
+174950344,104413871,Leptotila,FEATHER,FEATHER,Rodrigo Paiva Lázaro,cc-by,https://www.inaturalist.org/observations/104413871,feather
+174950417,104413871,Leptotila,FEATHER,FEATHER,Rodrigo Paiva Lázaro,cc-by,https://www.inaturalist.org/observations/104413871,feather
+174952130,104414284,Tyrannus savana,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/104414284,species
+175661532,104787232,Eudocimus ruber,SINGLE_BIRD,FLOCK,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/104787232,species
+176419188,105180520,Coragyps atratus brasiliensis,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/105180520,species
+176922867,105444647,Thamnophilus doliatus,FEATHER,FEATHER,Eduardo Kenyu Okido Matsumoto,cc-by-nc,https://www.inaturalist.org/observations/105444647,feather
+176922902,105444647,Thamnophilus doliatus,FEATHER,FEATHER,Eduardo Kenyu Okido Matsumoto,cc-by-nc,https://www.inaturalist.org/observations/105444647,feather
+177557972,105777949,Alipiopsitta xanthops,FLOCK,SINGLE_BIRD,Pedro Sisnando Araújo dos Santos,cc-by,https://www.inaturalist.org/observations/105777949,flock
+177558221,105777949,Alipiopsitta xanthops,FLOCK,SINGLE_BIRD,Pedro Sisnando Araújo dos Santos,cc-by,https://www.inaturalist.org/observations/105777949,flock
+180373622,107265601,Eupetomena macroura simoni,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/107265601,species
+181301141,107758697,Caracara plancus,SINGLE_BIRD,SINGLE_BIRD,miguelmagro,cc-by-nc,https://www.inaturalist.org/observations/107758697,species
+182977551,108651974,Rhea americana,SINGLE_BIRD,SINGLE_BIRD,Lilian Tomazelli,cc-by-nc,https://www.inaturalist.org/observations/108651974,species
+183158951,108749322,Vanellus chilensis lampronotus,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/108749322,species
+186512661,110552954,Colaptes melanochloros,FEATHER,FEATHER,izchelor,cc-by-nc,https://www.inaturalist.org/observations/110552954,feather
+186815260,110715023,Coccyzus melacoryphus,DEAD_BIRD,DEAD_BIRD,Karina Avila,cc-by-nc,https://www.inaturalist.org/observations/110715023,dead
+187127207,110892790,Icterus pyrrhopterus,DEAD_BIRD,DEAD_BIRD,Douglas,cc-by,https://www.inaturalist.org/observations/110892790,dead
+187127243,110892790,Icterus pyrrhopterus,DEAD_BIRD,DEAD_BIRD,Douglas,cc-by,https://www.inaturalist.org/observations/110892790,dead
+190756616,112912257,Guaruba guarouba,SINGLE_BIRD,SINGLE_BIRD,Nereston (Nelinho) Camargo,cc-by-nc,https://www.inaturalist.org/observations/112912257,species
+200971372,118916806,Cyphorhinus arada,SINGLE_BIRD,SINGLE_BIRD,no rights reserved,cc0,https://www.inaturalist.org/observations/118916806,species
+206089175,121765716,Megaceryle torquata torquata,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/121765716,species
+209945556,123900744,Cariama cristata,SINGLE_BIRD,SINGLE_BIRD,Luciano Bernardes,cc-by-nc,https://www.inaturalist.org/observations/123900744,species
+210389589,124143962,Aves,DEAD_BIRD,DEAD_BIRD,Paulo Nogueira,cc-by,https://www.inaturalist.org/observations/124143962,bone
+210389633,124143962,Aves,DEAD_BIRD,DEAD_BIRD,Paulo Nogueira,cc-by,https://www.inaturalist.org/observations/124143962,bone
+211357000,124679938,Rhea americana,SINGLE_BIRD,FLOCK,Cheryl Rosenfeld,cc-by-nc,https://www.inaturalist.org/observations/124679938,species
+212371029,125243822,Chloroceryle amazona,FEATHER,FEATHER,B. Phalan,cc-by,https://www.inaturalist.org/observations/125243822,feather
+212371585,125243822,Chloroceryle amazona,FEATHER,FEATHER,B. Phalan,cc-by,https://www.inaturalist.org/observations/125243822,feather
+215641895,127050380,Eurypyga helias,SINGLE_BIRD,SINGLE_BIRD,Robin Gwen Agarwal,cc-by-nc,https://www.inaturalist.org/observations/127050380,species
+216096775,127303409,Jabiru mycteria,SINGLE_BIRD,FLOCK,Robin Gwen Agarwal,cc-by-nc,https://www.inaturalist.org/observations/127303409,species
+217287300,127954227,Anodorhynchus hyacinthinus,SINGLE_BIRD,FLOCK,Robin Gwen Agarwal,cc-by-nc,https://www.inaturalist.org/observations/127954227,species
+228987761,134352007,Harpia harpyja,SINGLE_BIRD,SINGLE_BIRD,Luciano Massa,cc-by,https://www.inaturalist.org/observations/134352007,species
+231630018,135779162,Xenops minutus,OTHER,SINGLE_BIRD,edvandroabreuribeiro,cc-by-nc,https://www.inaturalist.org/observations/135779162,in_hand
+231630048,135779162,Xenops minutus,OTHER,SINGLE_BIRD,edvandroabreuribeiro,cc-by-nc,https://www.inaturalist.org/observations/135779162,in_hand
+233969189,137036267,Caracara plancus,SINGLE_BIRD,SINGLE_BIRD,KENNEDY BORGES,cc-by-nc,https://www.inaturalist.org/observations/137036267,species
+243835300,142244906,Tigrisoma lineatum,SINGLE_BIRD,EXCLUDED,quiltedquetzal,cc-by-nc,https://www.inaturalist.org/observations/142244906,species
+243841046,142247998,Eurypyga helias,SINGLE_BIRD,SINGLE_BIRD,quiltedquetzal,cc-by-nc,https://www.inaturalist.org/observations/142247998,species
+243841806,142248636,Ramphastos toco,SINGLE_BIRD,SINGLE_BIRD,quiltedquetzal,cc-by-nc,https://www.inaturalist.org/observations/142248636,species
+244938540,142828887,Jabiru mycteria,NEST,SINGLE_BIRD,Nicolas Olejnik,cc-by,https://www.inaturalist.org/observations/142828887,nest
+246024317,143456709,Strix huhula,FEATHER,FEATHER,Fábio Luis dos Santos,cc-by-nc,https://www.inaturalist.org/observations/143456709,feather
+246024329,143456709,Strix huhula,FEATHER,FEATHER,Fábio Luis dos Santos,cc-by-nc,https://www.inaturalist.org/observations/143456709,feather
+246159243,143527899,Florisuga fusca,EGGS,EGGS,B. Phalan,cc-by,https://www.inaturalist.org/observations/143527899,egg
+246159315,143527899,Florisuga fusca,EGGS,EGGS,B. Phalan,cc-by,https://www.inaturalist.org/observations/143527899,egg
+246883470,143905857,Pygochelidon cyanoleuca,SINGLE_BIRD,SINGLE_BIRD,Patrícia Nicoloso,cc-by-nc,https://www.inaturalist.org/observations/143905857,species
+248866271,144935346,Pyrrhura frontalis,FLOCK,SINGLE_BIRD,Rodrigo Paiva Lázaro,cc-by,https://www.inaturalist.org/observations/144935346,flock
+248992070,144999288,Dryocopus lineatus,SINGLE_BIRD,FLOCK,pauloamaral,cc-by-nc,https://www.inaturalist.org/observations/144999288,species
+253083950,147082482,Trochilidae,DEAD_BIRD,DEAD_BIRD,Matheus de souza ferreira,cc-by-nc,https://www.inaturalist.org/observations/147082482,dead
+253670183,147421065,Saltator similis,SINGLE_BIRD,DEAD_BIRD,Leny Paula,cc-by-nc,https://www.inaturalist.org/observations/147421065,species
+255134928,148186280,Molothrus bonariensis,OTHER,FLOCK,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/148186280,in_hand
+255135850,148186280,Molothrus bonariensis,OTHER,FLOCK,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/148186280,in_hand
+255138697,148188033,Sicalis flaveola,OTHER,SINGLE_BIRD,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/148188033,in_hand
+255138927,148188033,Sicalis flaveola,OTHER,SINGLE_BIRD,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/148188033,in_hand
+255376692,148311828,Thraupis sayaca,SINGLE_BIRD,SINGLE_BIRD,André Ambrozio,cc-by,https://www.inaturalist.org/observations/148311828,species
+259011752,150210042,Geotrygon montana,DEAD_BIRD,DEAD_BIRD,Nigel Pitman,cc-by-nc,https://www.inaturalist.org/observations/150210042,dead
+260722455,151133006,Botaurus pinnatus,DEAD_BIRD,DEAD_BIRD,João Gava Just,cc-by-nc,https://www.inaturalist.org/observations/151133006,dead
+260722474,151133006,Botaurus pinnatus,DEAD_BIRD,DEAD_BIRD,João Gava Just,cc-by-nc,https://www.inaturalist.org/observations/151133006,dead
+267584916,154840800,Saltator similis,SINGLE_BIRD,SINGLE_BIRD,abelardomendesjr,cc-by-nc,https://www.inaturalist.org/observations/154840800,species
+273399271,158177910,Ardea alba,SINGLE_BIRD,SINGLE_BIRD,no rights reserved,cc0,https://www.inaturalist.org/observations/158177910,species
+273724182,158378699,Vanellus chilensis,SINGLE_BIRD,SINGLE_BIRD,Patrícia Nicoloso,cc-by-nc,https://www.inaturalist.org/observations/158378699,species
+276687930,160126436,Pteroglossus castanotis,FLOCK,SINGLE_BIRD,Junior Freitas,cc-by,https://www.inaturalist.org/observations/160126436,flock
+276687990,160126436,Pteroglossus castanotis,FLOCK,SINGLE_BIRD,Junior Freitas,cc-by,https://www.inaturalist.org/observations/160126436,flock
+278355124,161052596,Caracara plancus,OTHER,OTHER,James Robert Taylor,cc-by-nc,https://www.inaturalist.org/observations/161052596,in_hand
+278355143,161052596,Caracara plancus,OTHER,OTHER,James Robert Taylor,cc-by-nc,https://www.inaturalist.org/observations/161052596,in_hand
+278366837,161060322,Aves,OTHER,OTHER,James Robert Taylor,cc-by-nc,https://www.inaturalist.org/observations/161060322,in_hand
+278366853,161060322,Aves,OTHER,SINGLE_BIRD,James Robert Taylor,cc-by-nc,https://www.inaturalist.org/observations/161060322,in_hand
+289402497,167084869,Guaruba guarouba,SINGLE_BIRD,SINGLE_BIRD,KENNEDY BORGES,cc-by-nc,https://www.inaturalist.org/observations/167084869,species
+302432551,161510876,Saltator similis,SINGLE_BIRD,DEAD_BIRD,B. Phalan,cc-by,https://www.inaturalist.org/observations/161510876,species
+307128122,176643740,Pulsatrix perspicillata,FEATHER,DEAD_BIRD,Lucas C. Marinho,cc-by-nc,https://www.inaturalist.org/observations/176643740,feather
+307128642,176643740,Pulsatrix perspicillata,FEATHER,FEATHER,Lucas C. Marinho,cc-by-nc,https://www.inaturalist.org/observations/176643740,feather
+308228620,177236549,Columba livia domestica,FEATHER,FEATHER,Juliana Gatti Pereira Rodrigues,cc-by-nc,https://www.inaturalist.org/observations/177236549,feather
+308228683,177236549,Columba livia domestica,FEATHER,FEATHER,Juliana Gatti Pereira Rodrigues,cc-by-nc,https://www.inaturalist.org/observations/177236549,feather
+309860970,178105440,Trochilidae,NEST,NEST,fabiana dos santos de oliveira rosin,cc-by-nc,https://www.inaturalist.org/observations/178105440,nest
+309861010,178105440,Trochilidae,NEST,NEST,fabiana dos santos de oliveira rosin,cc-by-nc,https://www.inaturalist.org/observations/178105440,nest
+311049224,178727145,Cariama cristata,SINGLE_BIRD,SINGLE_BIRD,KENNEDY BORGES,cc-by-nc,https://www.inaturalist.org/observations/178727145,species
+318965789,182888748,Eurypyga helias,SINGLE_BIRD,SINGLE_BIRD,Norton Santos,cc-by-nc,https://www.inaturalist.org/observations/182888748,species
+322242154,184593096,Parabuteo unicinctus,FLOCK,SINGLE_BIRD,Vitor C. Dias Gonçalves,cc-by-nc,https://www.inaturalist.org/observations/184593096,flock
+322242181,184593096,Parabuteo unicinctus,FLOCK,SINGLE_BIRD,Vitor C. Dias Gonçalves,cc-by-nc,https://www.inaturalist.org/observations/184593096,flock
+325846705,186454172,Columbina talpacoti talpacoti,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/186454172,species
+328850329,187972130,Paroaria coronata,SINGLE_BIRD,SINGLE_BIRD,pkondrashov,cc-by-nc,https://www.inaturalist.org/observations/187972130,species
+333364779,190204045,Asio clamator,FEATHER,FEATHER,Kaz Born,cc-by,https://www.inaturalist.org/observations/190204045,feather
+333366181,190204045,Asio clamator,FEATHER,FEATHER,Kaz Born,cc-by,https://www.inaturalist.org/observations/190204045,feather
+334962427,191000346,Columba livia domestica,EGGS,EGGS,JuanCMuniz,cc-by,https://www.inaturalist.org/observations/191000346,egg
+337061871,192050928,Columba livia domestica,FEATHER,FEATHER,Marco Antônio Zamith,cc-by-nc,https://www.inaturalist.org/observations/192050928,feather
+343334804,195198844,Cyanocorax caeruleus,SINGLE_BIRD,SINGLE_BIRD,Karina Avila,cc-by-nc,https://www.inaturalist.org/observations/195198844,species
+343502204,195279527,Hydropsalis torquata,OTHER,OTHER,Bruno Lima,cc-by-nc,https://www.inaturalist.org/observations/195279527,in_hand
+349877162,198498797,Cyanocorax caeruleus,SINGLE_BIRD,FLOCK,"RAMOS, M. A.",cc-by-nc,https://www.inaturalist.org/observations/198498797,species
+351925329,199550778,Harpia harpyja,SINGLE_BIRD,FLOCK,Kurt Hennige,cc-by-nc,https://www.inaturalist.org/observations/199550778,species
+353335283,200284295,Pulsatrix koeniswaldiana,DEAD_BIRD,DEAD_BIRD,guilhermelindner,cc-by-nc,https://www.inaturalist.org/observations/200284295,dead
+353335299,200284295,Pulsatrix koeniswaldiana,DEAD_BIRD,DEAD_BIRD,guilhermelindner,cc-by-nc,https://www.inaturalist.org/observations/200284295,dead
+353415012,200326093,Syrigma sibilatrix,FEATHER,DEAD_BIRD,Ana Laura Fiori Dalcin,cc-by,https://www.inaturalist.org/observations/200326093,feather
+353415061,200326093,Syrigma sibilatrix,FEATHER,FEATHER,Ana Laura Fiori Dalcin,cc-by,https://www.inaturalist.org/observations/200326093,feather
+356574276,201948531,Harpia harpyja,NEST,NEST,MarcosHalemFelix,cc-by-nc,https://www.inaturalist.org/observations/201948531,nest
+356640399,201983266,Turdus leucomelas,DEAD_BIRD,DEAD_BIRD,Franciele,cc-by-nc,https://www.inaturalist.org/observations/201983266,dead
+356642221,201983266,Turdus leucomelas,DEAD_BIRD,DEAD_BIRD,Franciele,cc-by-nc,https://www.inaturalist.org/observations/201983266,dead
+361364701,204442054,Cyanocorax cristatellus,FLOCK,FLOCK,Bruno Martins,cc-by-nc,https://www.inaturalist.org/observations/204442054,flock
+361365606,204442054,Cyanocorax cristatellus,FLOCK,FLOCK,Bruno Martins,cc-by-nc,https://www.inaturalist.org/observations/204442054,flock
+363294364,205459632,Eudocimus ruber,SINGLE_BIRD,SINGLE_BIRD,Marcio C Motta,cc-by-nc,https://www.inaturalist.org/observations/205459632,species
+369191272,208650368,Cariama cristata,SINGLE_BIRD,SINGLE_BIRD,Felipe Augusto,cc-by,https://www.inaturalist.org/observations/208650368,species
+374366240,211798772,Geotrygon montana,NEST,NEST,Lucas Klitzke,cc-by-nc,https://www.inaturalist.org/observations/211798772,nest
+377302861,213493481,Calidris fuscicollis,DEAD_BIRD,DEAD_BIRD,charlesavenengo,cc-by-nc,https://www.inaturalist.org/observations/213493481,dead
+377302976,213493481,Calidris fuscicollis,DEAD_BIRD,DEAD_BIRD,charlesavenengo,cc-by-nc,https://www.inaturalist.org/observations/213493481,dead
+378894664,214364734,Ara ararauna,DEAD_BIRD,DEAD_BIRD,Lucas Leuzinger,cc-by-nc,https://www.inaturalist.org/observations/214364734,dead
+385728807,218005251,Cyphorhinus arada,SINGLE_BIRD,SINGLE_BIRD,Lindolfo Souto,cc-by,https://www.inaturalist.org/observations/218005251,species
+388265803,219362698,Brotogeris tirica,SINGLE_BIRD,FLOCK,Bruno Henrique Aranda,cc-by,https://www.inaturalist.org/observations/219362698,species
+390134267,220360190,Turdus rufiventris,SINGLE_BIRD,SINGLE_BIRD,Lucas Mantelo Cruz,cc-by,https://www.inaturalist.org/observations/220360190,species
+390728428,220675030,Caracara plancus,SINGLE_BIRD,FLOCK,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/220675030,species
+393221656,222011171,Furnarius rufus,SINGLE_BIRD,FLOCK,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/222011171,species
+394254612,222559321,Psittacara leucophthalmus,FLOCK,SINGLE_BIRD,Nayara,cc-by-nc,https://www.inaturalist.org/observations/222559321,flock
+397866655,224481318,Vanellus chilensis,OTHER,SINGLE_BIRD,Isabela Nogueira,cc-by-nc,https://www.inaturalist.org/observations/224481318,in_hand
+397866712,224481318,Vanellus chilensis,OTHER,SINGLE_BIRD,Isabela Nogueira,cc-by-nc,https://www.inaturalist.org/observations/224481318,in_hand
+402007805,226657185,Columbina talpacoti talpacoti,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/226657185,species
+404958206,228217881,Jabiru mycteria,SINGLE_BIRD,SINGLE_BIRD,KENNEDY BORGES,cc-by-nc,https://www.inaturalist.org/observations/228217881,species
+414331079,233158770,Ara ararauna,SINGLE_BIRD,FLOCK,KENNEDY BORGES,cc-by-nc,https://www.inaturalist.org/observations/233158770,species
+418209108,235179833,Spheniscus magellanicus,DEAD_BIRD,DEAD_BIRD,rosalaura,cc-by-nc,https://www.inaturalist.org/observations/235179833,dead
+419644174,235923019,Hemithraupis ruficapilla,FLOCK,SINGLE_BIRD,Davidson Moreira,cc-by,https://www.inaturalist.org/observations/235923019,flock
+421655712,236969262,Spizaetus ornatus,NEST,NEST,Luiz Moschini,cc-by-nc,https://www.inaturalist.org/observations/236969262,nest
+424276919,238323492,Rhea americana,EGGS,EGGS,MarcosHalemFelix,cc-by-nc,https://www.inaturalist.org/observations/238323492,egg
+424276968,238323492,Rhea americana,EGGS,EGGS,MarcosHalemFelix,cc-by-nc,https://www.inaturalist.org/observations/238323492,egg
+427527795,240001458,Agelaioides fringillarius,FLOCK,FLOCK,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/240001458,flock
+433948749,243366497,Troglodytes musculus musculus,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/243366497,species
+435004780,243912886,Saltator similis,SINGLE_BIRD,SINGLE_BIRD,brunavonrondon,cc-by-nc,https://www.inaturalist.org/observations/243912886,species
+438072822,245488663,Troglodytes musculus,NEST,DEAD_BIRD,Giovanna Roque de Castro,cc-by-sa,https://www.inaturalist.org/observations/245488663,nest
+438072843,245488663,Troglodytes musculus,NEST,NEST,Giovanna Roque de Castro,cc-by-sa,https://www.inaturalist.org/observations/245488663,nest
+442000939,247474305,Phalacrocoracidae,FEATHER,DEAD_BIRD,Yuri Tedéo,cc-by-nc,https://www.inaturalist.org/observations/247474305,feather
+442846133,247900328,Troglodytes musculus bonariae,EGGS,EGGS,Leonardo Rebello,cc-by-nc,https://www.inaturalist.org/observations/247900328,egg
+446916283,249952052,Crotophaga ani,SINGLE_BIRD,SINGLE_BIRD,Felipe Kenzo Aoyagui,cc-by-nc,https://www.inaturalist.org/observations/249952052,species
+447088675,250038602,Harpia harpyja,SINGLE_BIRD,SINGLE_BIRD,Christoph Moning,cc-by,https://www.inaturalist.org/observations/250038602,species
+448251010,250613956,Crotophaga ani,SINGLE_BIRD,SINGLE_BIRD,sheylarossi,cc-by-sa,https://www.inaturalist.org/observations/250613956,species
+448931881,250954620,Coragyps atratus,SINGLE_BIRD,FLOCK,Alisson,cc-by-nc,https://www.inaturalist.org/observations/250954620,species
+450409235,251696464,Cariama cristata,FEATHER,FEATHER,lessinger,cc-by-nc,https://www.inaturalist.org/observations/251696464,feather
+454927865,254027638,Coragyps atratus,SINGLE_BIRD,EXCLUDED,Peter Caire,cc-by-nc,https://www.inaturalist.org/observations/254027638,species
+457147455,254909195,Dryocopus lineatus,SINGLE_BIRD,SINGLE_BIRD,ricardofilgueiras,cc-by-nc,https://www.inaturalist.org/observations/254909195,species
+457776175,255451265,Tyrannus savana,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/255451265,species
+460929171,257001646,Coccyzus melacoryphus,EGGS,EGGS,José Vinícius de Medeiros,cc-by-nc-sa,https://www.inaturalist.org/observations/257001646,egg
+461042352,257055297,Zonotrichia capensis,EGGS,EGGS,iurirudiger,cc-by-nc,https://www.inaturalist.org/observations/257055297,egg
+467670923,260420314,Dendrocygna autumnalis,DEAD_BIRD,DEAD_BIRD,Lucas Leuzinger,cc-by-nc,https://www.inaturalist.org/observations/260420314,dead
+467695136,260432681,Chionomesa fimbriata,NEST,FLOCK,KENNEDY BORGES,cc-by-nc,https://www.inaturalist.org/observations/260432681,nest
+468741127,260961654,Eurypyga helias,SINGLE_BIRD,SINGLE_BIRD,Dan Vickers,cc-by,https://www.inaturalist.org/observations/260961654,species
+469275966,261230354,Thraupis ornata,DEAD_BIRD,DEAD_BIRD,Cajá-manga,cc-by,https://www.inaturalist.org/observations/261230354,dead
+469275974,261230354,Thraupis ornata,DEAD_BIRD,DEAD_BIRD,Cajá-manga,cc-by,https://www.inaturalist.org/observations/261230354,dead
+469623970,261406893,Tyrannus savana,SINGLE_BIRD,SINGLE_BIRD,Dan Vickers,cc-by,https://www.inaturalist.org/observations/261406893,species
+471972006,262789417,Sicalis flaveola,SINGLE_BIRD,SINGLE_BIRD,amazon-san,cc-by-nc,https://www.inaturalist.org/observations/262789417,species
+473406155,263513739,Vanellus chilensis,SINGLE_BIRD,SINGLE_BIRD,Francisco V. Bezerra Neto,cc-by-sa,https://www.inaturalist.org/observations/263513739,species
+475410853,264738418,Eupetomena macroura,SINGLE_BIRD,SINGLE_BIRD,Inacio Oliveira,cc-by,https://www.inaturalist.org/observations/264738418,species
+490761212,272780967,Pitangus sulphuratus maximiliani,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/272780967,species
+494001462,274843523,Vanellus chilensis,SINGLE_BIRD,SINGLE_BIRD,mpaulamellito,cc-by-nc,https://www.inaturalist.org/observations/274843523,species
+499014305,277912151,Ardea cocoi,NEST,FLOCK,pegiasfabula,cc-by-nc,https://www.inaturalist.org/observations/277912151,nest
+505161787,281222671,Cacicus cela,NEST,EXCLUDED,Mari,cc-by-nc,https://www.inaturalist.org/observations/281222671,nest
+505162204,281222671,Cacicus cela,NEST,EXCLUDED,Mari,cc-by-nc,https://www.inaturalist.org/observations/281222671,nest
+505335695,281320587,Ardea alba,SINGLE_BIRD,SINGLE_BIRD,Victor,cc-by-nc,https://www.inaturalist.org/observations/281320587,species
+513634403,285750862,Pyrrhura cruentata,FLOCK,FLOCK,Maria Isabel R. Carvalho,cc-by-nc,https://www.inaturalist.org/observations/285750862,flock
+513634493,285750862,Pyrrhura cruentata,FLOCK,FLOCK,Maria Isabel R. Carvalho,cc-by-nc,https://www.inaturalist.org/observations/285750862,flock
+527307445,292989652,Sicalis flaveola,SINGLE_BIRD,SINGLE_BIRD,Geovanna Thaissa,cc-by,https://www.inaturalist.org/observations/292989652,species
+528671912,293745936,Veniliornis maculifrons,NEST,SINGLE_BIRD,GtrekSan,cc-by-nc,https://www.inaturalist.org/observations/293745936,nest
+528671993,293745936,Veniliornis maculifrons,NEST,EXCLUDED,GtrekSan,cc-by-nc,https://www.inaturalist.org/observations/293745936,nest
+534612931,296879635,Athene cunicularia,SINGLE_BIRD,FLOCK,João Salvador,cc-by-nc,https://www.inaturalist.org/observations/296879635,species
+538233739,298786074,Troglodytes musculus musculus,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/298786074,species
+539522462,299471145,Tangara seledon,SINGLE_BIRD,SINGLE_BIRD,Jonathan Rossouw,cc-by-nc,https://www.inaturalist.org/observations/299471145,species
+544215031,301986142,Eupetomena macroura,SINGLE_BIRD,SINGLE_BIRD,Charles Boufleur,cc-by-nc,https://www.inaturalist.org/observations/301986142,species
+545927833,302910572,Sula leucogaster,DEAD_BIRD,DEAD_BIRD,gabrielwertman,cc-by-nc,https://www.inaturalist.org/observations/302910572,bone
+548999591,304531807,Pitangus sulphuratus,SINGLE_BIRD,SINGLE_BIRD,Pedro Lucas,cc-by-nc,https://www.inaturalist.org/observations/304531807,species
+549144561,304609991,Thraupis sayaca,SINGLE_BIRD,SINGLE_BIRD,Vitor C. Dias Gonçalves,cc-by-nc,https://www.inaturalist.org/observations/304609991,species
+558156232,309319668,Brotogeris cyanoptera,FLOCK,SINGLE_BIRD,cailaneMaia,cc-by-nc,https://www.inaturalist.org/observations/309319668,flock
+558156279,309319668,Brotogeris cyanoptera,FLOCK,FLOCK,cailaneMaia,cc-by-nc,https://www.inaturalist.org/observations/309319668,flock
+561946144,311301504,Ara ararauna,SINGLE_BIRD,SINGLE_BIRD,Patrick Coin,cc-by-nc,https://www.inaturalist.org/observations/311301504,species
+562496028,311591161,Coragyps atratus,SINGLE_BIRD,SINGLE_BIRD,Cleverson Felix,cc-by-nc,https://www.inaturalist.org/observations/311591161,species
+562860043,311785547,Paroaria coronata,SINGLE_BIRD,SINGLE_BIRD,no rights reserved,cc0,https://www.inaturalist.org/observations/311785547,species
+564786304,312791894,Batara cinerea,FEATHER,FEATHER,Amanda,cc-by-nc,https://www.inaturalist.org/observations/312791894,feather
+564786352,312791894,Batara cinerea,FEATHER,FEATHER,Amanda,cc-by-nc,https://www.inaturalist.org/observations/312791894,feather
+564795300,312796278,Columbina talpacoti,SINGLE_BIRD,SINGLE_BIRD,Cleverson Felix,cc-by-nc,https://www.inaturalist.org/observations/312796278,species
+571849835,316505663,Pygochelidon cyanoleuca,SINGLE_BIRD,SINGLE_BIRD,Bruce Taylor,cc-by-nc,https://www.inaturalist.org/observations/316505663,species
+572998469,317118299,Thraupis sayaca,SINGLE_BIRD,DEAD_BIRD,Leonardo Rebello,cc-by-nc,https://www.inaturalist.org/observations/317118299,species
+572998504,317118299,Thraupis sayaca,DEAD_BIRD,DEAD_BIRD,Leonardo Rebello,cc-by-nc,https://www.inaturalist.org/observations/317118299,dead
+579518771,320518408,Passer domesticus,EGGS,EGGS,Leonardo Rebello,cc-by-nc,https://www.inaturalist.org/observations/320518408,egg
+579518798,320518408,Passer domesticus,EGGS,EGGS,Leonardo Rebello,cc-by-nc,https://www.inaturalist.org/observations/320518408,egg
+583220223,322397586,Columba livia domestica,FEATHER,FEATHER,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/322397586,feather
+583220581,322397586,Columba livia domestica,FEATHER,FEATHER,Nelson Wisnik,cc-by-nc,https://www.inaturalist.org/observations/322397586,feather
+588518997,325082859,Crotophaga ani,SINGLE_BIRD,SINGLE_BIRD,bacu•bacana,cc-by-nc-sa,https://www.inaturalist.org/observations/325082859,species
+590100540,325876784,Dryocopus lineatus,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/325876784,species
+590558305,326108637,Dryocopus lineatus lineatus,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/326108637,species
+591905837,326782638,Megaceryle torquata,SINGLE_BIRD,SINGLE_BIRD,no rights reserved,cc0,https://www.inaturalist.org/observations/326782638,species
+600087218,330870556,Megaceryle torquata,SINGLE_BIRD,SINGLE_BIRD,Jhackson Wylhan,cc-by-nc,https://www.inaturalist.org/observations/330870556,species
+607229124,334384193,Theristicus caudatus,SINGLE_BIRD,SINGLE_BIRD,Benjamín González,cc-by-nc,https://www.inaturalist.org/observations/334384193,species
+613396954,337425696,Turdus rufiventris juensis,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/337425696,species
+614765363,338094143,Ara ararauna,SINGLE_BIRD,SINGLE_BIRD,Leandro Rezende,cc-by-nc,https://www.inaturalist.org/observations/338094143,species
+618676596,340023433,Eudocimus ruber,SINGLE_BIRD,FLOCK,Davi Eduardo,cc-by,https://www.inaturalist.org/observations/340023433,species
+620844175,341085264,Anodorhynchus hyacinthinus,SINGLE_BIRD,SINGLE_BIRD,amandapmarcon,cc-by-nc,https://www.inaturalist.org/observations/341085264,species
+629962905,345654200,Troglodytes musculus,SINGLE_BIRD,SINGLE_BIRD,Carolina Ribeiro,cc-by-nc,https://www.inaturalist.org/observations/345654200,species
+638193768,349821545,Tigrisoma lineatum,SINGLE_BIRD,SINGLE_BIRD,eduardovieira17,cc-by-nc,https://www.inaturalist.org/observations/349821545,species
+654989744,359016426,Fluvicola nengeta,NEST,NEST,Giovanna Roque de Castro,cc-by-sa,https://www.inaturalist.org/observations/359016426,nest
+654989792,359016426,Fluvicola nengeta,NEST,OTHER,Giovanna Roque de Castro,cc-by-sa,https://www.inaturalist.org/observations/359016426,nest
+658753271,360985180,Pygochelidon cyanoleuca,SINGLE_BIRD,FLOCK,Davi Fernandes de Sousa Carmo,cc-by-nc,https://www.inaturalist.org/observations/360985180,species
+660443848,361869680,Eudocimus ruber,SINGLE_BIRD,SINGLE_BIRD,Miguel,cc-by-sa,https://www.inaturalist.org/observations/361869680,species
+661844746,362612786,Furnarius rufus,SINGLE_BIRD,SINGLE_BIRD,jerlisa,cc-by-nc,https://www.inaturalist.org/observations/362612786,species
+681141328,372739344,Nymphicus hollandicus domesticus,DEAD_BIRD,SINGLE_BIRD,jmk17,cc-by-nc,https://www.inaturalist.org/observations/372739344,bone
+681141388,372739344,Nymphicus hollandicus domesticus,DEAD_BIRD,SINGLE_BIRD,jmk17,cc-by-nc,https://www.inaturalist.org/observations/372739344,bone
+684889894,374694598,Furnarius figulus,OTHER,OTHER,Ramon,cc-by-nc,https://www.inaturalist.org/observations/374694598,in_hand
+684891683,374694598,Furnarius figulus,OTHER,OTHER,Ramon,cc-by-nc,https://www.inaturalist.org/observations/374694598,in_hand
+687019469,375784667,Rhea americana,SINGLE_BIRD,SINGLE_BIRD,Donald Davesne,cc-by,https://www.inaturalist.org/observations/375784667,species
+705321711,385276912,Athene cunicularia,SINGLE_BIRD,SINGLE_BIRD,joao_muniz,cc-by-nc,https://www.inaturalist.org/observations/385276912,species
+705977256,385689057,Chaetura spinicaudus,OTHER,SINGLE_BIRD,John Bruin,cc-by-nc,https://www.inaturalist.org/observations/385689057,in_hand
+706113555,385721426,Hypocnemoides maculicauda,OTHER,SINGLE_BIRD,John Bruin,cc-by-nc,https://www.inaturalist.org/observations/385721426,in_hand
+706113584,385721426,Hypocnemoides maculicauda,OTHER,SINGLE_BIRD,John Bruin,cc-by-nc,https://www.inaturalist.org/observations/385721426,in_hand
+706177606,385741020,Atticora fasciata,OTHER,SINGLE_BIRD,John Bruin,cc-by-nc,https://www.inaturalist.org/observations/385741020,in_hand
+706177687,385741028,Chaetura spinicaudus,OTHER,SINGLE_BIRD,John Bruin,cc-by-nc,https://www.inaturalist.org/observations/385741028,in_hand
+706177701,385741028,Chaetura spinicaudus,OTHER,SINGLE_BIRD,John Bruin,cc-by-nc,https://www.inaturalist.org/observations/385741028,in_hand
+707743507,386539916,Athene cunicularia,SINGLE_BIRD,SINGLE_BIRD,tainafoltran,cc-by-nc,https://www.inaturalist.org/observations/386539916,species
+716345402,390974941,Anser anser domesticus × cygnoides domesticus,EGGS,FLOCK,Rebeca Vitória Domiciano,cc-by-nc,https://www.inaturalist.org/observations/390974941,egg
+716658215,391135819,Tyrannus savana,SINGLE_BIRD,SINGLE_BIRD,Wallace Carneiro Almeida,cc-by-sa,https://www.inaturalist.org/observations/391135819,species
+722482916,394117350,Pitangus sulphuratus,SINGLE_BIRD,SINGLE_BIRD,brunojp77,cc-by-nc,https://www.inaturalist.org/observations/394117350,species
+722501305,394126912,Sicalis flaveola,SINGLE_BIRD,SINGLE_BIRD,Elder,cc-by-nc,https://www.inaturalist.org/observations/394126912,species
+732797350,399411691,Thalurania glaucopis,EGGS,EGGS,ilhabelaemdestaque,cc-by-nc,https://www.inaturalist.org/observations/399411691,egg
+748921385,407529644,Cyanocorax caeruleus,SINGLE_BIRD,SINGLE_BIRD,Gonzalo Giribet,cc-by-nc,https://www.inaturalist.org/observations/407529644,species
