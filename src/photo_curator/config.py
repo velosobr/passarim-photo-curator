@@ -13,7 +13,7 @@ from types import MappingProxyType
 
 # Versão dos modelos + da regra. Muda quando um modelo, uma frase do CLIP ou um
 # limite muda: o worker grava este texto em cada foto e sabe o que refazer.
-MODEL_VERSION = "rtdetr-r50vd+openclip-b32@1"
+MODEL_VERSION = "rtdetr-r50vd+openclip-b32@2"
 
 # Lote máximo por chamada (o contrato diz 8: bem abaixo dos 4 MB do gRPC).
 MAX_BATCH = 8
@@ -27,15 +27,23 @@ MAX_IMAGE_PIXELS = 4096 * 4096
 # Detector: só caixas da classe "bird" com confiança a partir daqui contam como ave.
 DETECTOR_MIN_SCORE = 0.5
 
+# Limites calibrados em 2026-10-18 na metade de calibração do conjunto de
+# referência (scripts/calibrate.py, semente 20261017, 141 fotos). Resultado
+# nessa metade: precisão de SINGLE_BIRD 92,4% (meta 95%), revocação de
+# SINGLE_BIRD 82,4% (meta 70%), revocação dos descartes 95,8% (meta 90%).
+# Quem diz se a regra passa é a metade de medição (scripts/measure.py, na CI).
+#
 # Descarte por conteúdo: se a probabilidade do CLIP para a classe passa do
-# limite, a foto é descartada com a categoria correspondente.
+# limite, a foto é descartada com a categoria correspondente. A calibração
+# baixou "nest" (0,5 -> 0,3) e "feather"/"drawing" (0,5 -> 0,45): com 0,5,
+# ninhos e penas de verdade escapavam para SINGLE_BIRD ou OTHER.
 DISCARD_MIN: dict[str, float] = {
-    "nest": 0.5,
+    "nest": 0.3,
     "eggs": 0.5,
-    "feather": 0.5,
+    "feather": 0.45,
     "dead": 0.5,
     "in_hand": 0.5,
-    "drawing": 0.5,
+    "drawing": 0.45,
 }
 
 # Bando pelo CLIP: a partir daqui é FLOCK, mesmo que o detector ache 0 ou 1 ave.

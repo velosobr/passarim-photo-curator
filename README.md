@@ -46,4 +46,22 @@ docker run --rm --network none --read-only --tmpfs /tmp -v "$PWD/tests/fixtures:
   passarim-photo-curator:dev python -m photo_curator.selfcheck /fixtures
 ```
 
+## Conjunto de referência
+
+Em `tests/reference/`: fotos reais do iNaturalist, revisadas à mão, que medem se a regra acerta.
+
+- `manifest.csv`: uma linha por foto, com a sugestão (`proposed_label`) e o rótulo revisado (`label`).
+- `photos/`: as fotos, com 512 px no lado maior. Cada uma mantém a licença CC dela; ver `tests/reference/ATTRIBUTION.md`.
+- Divisão fixa (semente em `src/photo_curator/reference/split.py`): os limites do `config.py` saem da metade de calibração, e a CI mede na metade de medição.
+
+```bash
+uv run python scripts/build_reference.py        # baixa ou cresce o conjunto
+uv run python scripts/make_review_page.py       # monta a página de revisão em build/review
+uv run python scripts/apply_review.py           # aplica tests/reference/review.json
+CURATOR_MODELS_DIR=models uv run python scripts/calibrate.py   # sugere limites (metade de calibração)
+CURATOR_MODELS_DIR=models uv run python scripts/measure.py     # mede (metade de medição)
+```
+
+Mudar um limite depois de olhar a medição pede um sorteio novo: troque `SEED` e registre o motivo no commit.
+
 As fotos de `tests/fixtures` mantêm a licença de cada uma (ver `tests/fixtures/ATTRIBUTION.md`).

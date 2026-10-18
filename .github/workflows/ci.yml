@@ -2,6 +2,7 @@
 # - test: ruff (estilo e erros) e pytest (sem os testes que precisam dos pesos);
 # - security: gitleaks procura segredos no histórico do git.
 # - models: os modelos de verdade nas fotos reais;
+# - reference: mede o curador no conjunto de referência e reprova abaixo das metas;
 # - security também constrói a imagem, roda o self-check sem rede e o Trivy.
 name: ci
 
@@ -45,6 +46,28 @@ jobs:
           key: weights-${{ hashFiles('src/photo_curator/weights.py') }}
       - run: uv run python -m photo_curator.weights models
       - run: uv run pytest -m models -q
+        env:
+          CURATOR_MODELS_DIR: models
+
+  # Mede o curador na metade de medição do conjunto de referência e reprova
+  # abaixo das metas da spec (precisão de SINGLE_BIRD >= 95%, revocação de
+  # SINGLE_BIRD >= 70%, revocação dos descartes >= 90%). O resumo, com o
+  # intervalo de Wilson e a matriz de confusão, aparece na página do job.
+  reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: "0.13.1"
+          enable-cache: true
+      - run: uv sync --frozen
+      - uses: actions/cache@v4
+        with:
+          path: models
+          key: weights-${{ hashFiles('src/photo_curator/weights.py') }}
+      - run: uv run python -m photo_curator.weights models
+      - run: uv run python scripts/measure.py
         env:
           CURATOR_MODELS_DIR: models
 
