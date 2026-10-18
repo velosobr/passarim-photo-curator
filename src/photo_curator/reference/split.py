@@ -16,16 +16,26 @@ Como dividimos:
   com a mesma semente, produz sempre a mesma sequência. A divisão sai igual em
   qualquer máquina e em qualquer dia.
 
+- CONGELADA depois do primeiro sorteio: tests/reference/split.json guarda a
+  metade de cada observação já sorteada. Quando o conjunto cresce, ou o dono
+  troca o rótulo de uma foto, o embaralhamento de um rótulo mudaria inteiro (a
+  lista ficou maior, ou a observação mudou de rótulo), e fotos já vistas na
+  calibração cairiam na medição. Com o arquivo, as antigas ficam onde estavam
+  e só as observações novas são sorteadas, entre elas.
+
 A MEDIÇÃO NÃO AJUSTA LIMITES. Se alguém mudar um limite depois de olhar o
 resultado da medição, precisa trocar SEED (e registrar o motivo no commit): o
 sorteio novo cria uma medição que a pessoa ainda não viu.
 
-Quem usa: scripts/calibrate.py e scripts/measure.py.
+Quem usa: scripts/calibrate.py e scripts/measure.py (leem split.json) e
+scripts/apply_review.py (grava split.json depois de aplicar a revisão).
 """
 
+import json
 import random
 from collections import Counter, defaultdict
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
+from pathlib import Path
 
 from photo_curator.reference.manifest import DISCARD_LABELS, EXCLUDED, Row
 
@@ -46,17 +56,29 @@ def _group_label(members: Sequence[Row]) -> str:
     return min(counts, key=lambda label: (-counts[label], label))
 
 
-def split(rows: Sequence[Row], seed: int = SEED) -> dict[str, list[Row]]:
-    """Divide as fotos rotuladas (sem as EXCLUDED e as ainda sem rótulo)."""
+def split(
+    rows: Sequence[Row], seed: int = SEED, frozen: Mapping[str, str] | None = None
+) -> dict[str, list[Row]]:
+    """Divide as fotos rotuladas (sem as EXCLUDED e as ainda sem rótulo).
+
+    `frozen` (observation_id -> metade) é o sorteio já feito, lido de
+    split.json: essas observações ficam na metade gravada, e só as que não
+    estão nele passam pelo sorteio abaixo.
+    """
+    frozen = frozen or {}
     usable = [r for r in rows if r.label and r.label != EXCLUDED]
     groups: dict[str, list[Row]] = defaultdict(list)
     for r in usable:
         groups[r.observation_id].append(r)
-    strata: dict[str, list[str]] = defaultdict(list)
-    for observation_id, members in groups.items():
-        strata[_group_label(members)].append(observation_id)
 
     halves: dict[str, list[Row]] = {CALIBRATION: [], MEASUREMENT: []}
+    strata: dict[str, list[str]] = defaultdict(list)
+    for observation_id, members in groups.items():
+        if frozen.get(observation_id) in halves:
+            halves[frozen[observation_id]].extend(members)
+        else:
+            strata[_group_label(members)].append(observation_id)
+
     for label in sorted(strata):
         # Ordenar antes de embaralhar: o resultado não pode depender da ordem
         # das linhas no CSV. A semente leva o rótulo junto para cada estrato ter
@@ -71,6 +93,24 @@ def split(rows: Sequence[Row], seed: int = SEED) -> dict[str, list[Row]]:
     for members in halves.values():
         members.sort(key=lambda r: int(r.photo_id))
     return halves
+
+
+def freeze(halves: Mapping[str, Sequence[Row]]) -> dict[str, str]:
+    """O sorteio feito, no formato de split.json: observation_id -> metade."""
+    return {r.observation_id: name for name, members in halves.items() for r in members}
+
+
+def read_frozen(path: Path) -> dict[str, str]:
+    """Lê split.json; sem o arquivo (primeiro sorteio), nada está congelado."""
+    if not path.exists():
+        return {}
+    return dict(json.loads(path.read_text(encoding="utf-8")))
+
+
+def write_frozen(path: Path, frozen: Mapping[str, str]) -> None:
+    """Grava split.json em ordem numérica, para o diff do git ficar legível."""
+    ordered = {k: frozen[k] for k in sorted(frozen, key=int)}
+    path.write_text(json.dumps(ordered, indent=1) + "\n", encoding="utf-8")
 
 
 def check_minimum(measurement: Sequence[Row]) -> list[str]:

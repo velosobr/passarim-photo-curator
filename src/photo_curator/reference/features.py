@@ -8,7 +8,9 @@ regra.
 
 O cache tem uma CHAVE: o hash dos pesos, das frases do CLIP e da confiança
 mínima do detector. Se qualquer um mudar, as saídas mudam, e o cache antigo é
-ignorado (senão a calibração usaria saídas de outro modelo).
+ignorado (senão a calibração usaria saídas de outro modelo). Cada foto no
+cache também guarda o hash do ARQUIVO dela: se a foto for trocada no disco, as
+saídas antigas não valem mais e os modelos rodam de novo só para ela.
 
 Quem usa: reference/calibrate.py, scripts/calibrate.py e scripts/measure.py.
 """
@@ -33,6 +35,15 @@ from photo_curator.types import Box
 
 @dataclass(frozen=True)
 class Features:
+    """Tudo o que a regra precisa saber de uma foto, já calculado pelos modelos.
+
+    - boxes: as caixas de ave que o detector achou (com a confiança de cada uma);
+    - clip: a probabilidade que o CLIP deu a cada classe de frase (ninho, ovo,
+      bando...), somando 1 entre todas;
+    - sharpness: a nitidez (0 a 1) medida na maior caixa, ou na foto inteira;
+    - width e height: o tamanho da foto em pixels.
+    """
+
     boxes: tuple[Box, ...]
     clip: dict[str, float]
     sharpness: float
@@ -75,19 +86,52 @@ def _from_json(d: dict) -> Features:
     )
 
 
-def _load_cache(path: Path) -> dict[str, Features]:
+def _file_hash(path: Path) -> str:
+    """O sha256 do arquivo da foto: muda se qualquer byte da foto mudar."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _load_cache(path: Path) -> dict[str, tuple[str, Features]]:
+    """O cache em disco: photo_id -> (hash do arquivo, características).
+
+    Se a chave gravada não bate com a de agora (outros pesos, outras frases), o
+    cache inteiro é de outro modelo: devolvemos vazio, e tudo é recalculado. Não
+    é erro, é só o caminho mais lento.
+    """
     if not path.exists():
         return {}
     data = json.loads(path.read_text(encoding="utf-8"))
     if data.get("key") != cache_key():
         return {}
-    return {photo_id: _from_json(d) for photo_id, d in data["photos"].items()}
+    return {photo_id: (d.get("file_sha256", ""), _from_json(d)) for photo_id, d in data["photos"].items()}
 
 
-def _save_cache(path: Path, cached: dict[str, Features]) -> None:
+def _save_cache(path: Path, cached: dict[str, tuple[str, Features]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    data = {"key": cache_key(), "photos": {k: _to_json(v) for k, v in sorted(cached.items())}}
-    path.write_text(json.dumps(data), encoding="utf-8")
+    photos = {k: {**_to_json(f), "file_sha256": h} for k, (h, f) in sorted(cached.items())}
+    path.write_text(json.dumps({"key": cache_key(), "photos": photos}), encoding="utf-8")
+
+
+def _run_models(photo_id: str, path: Path, detector: Detector, zeroshot: ZeroShot) -> Features:
+    """Abre a foto e roda os dois modelos nela.
+
+    Uma foto que não abre (arquivo cortado por um download interrompido, ou que
+    não é imagem) vira ValueError com o id: a mensagem do PIL sozinha ("could
+    not create decoder object") não diz qual das centenas de fotos é.
+    """
+    try:
+        with Image.open(path) as original:
+            image = original.convert("RGB")
+    except (OSError, Image.DecompressionBombError) as err:
+        raise ValueError(f"a foto {photo_id} ({path}) não abre: {err}") from err
+    boxes = tuple(detector.detect(image))
+    return Features(
+        boxes=boxes,
+        clip=dict(zeroshot.classify(image)),
+        sharpness=measure(image, largest_box(boxes)),
+        width=image.width,
+        height=image.height,
+    )
 
 
 def compute_all(
@@ -95,27 +139,22 @@ def compute_all(
 ) -> dict[str, Features]:
     """As características de cada linha, do cache ou rodando os modelos.
 
-    Uma foto sem arquivo é ERRO (FileNotFoundError com o id), nunca é pulada:
-    pular mudaria a métrica sem ninguém perceber.
+    Uma foto sem arquivo é ERRO (FileNotFoundError com o id), nunca é pulada,
+    mesmo que ela esteja no cache: pular mudaria a métrica sem ninguém perceber.
+    Uma foto que não abre também é erro (ValueError com o id).
     """
     cached = _load_cache(cache_path)
     out: dict[str, Features] = {}
     for r in rows:
-        if r.photo_id not in cached:
-            path = image_path(folder, r)
-            if not path.is_file():
-                raise FileNotFoundError(f"a foto {r.photo_id} do manifesto não tem arquivo em {path}")
-            with Image.open(path) as original:
-                image = original.convert("RGB")
-            boxes = tuple(detector.detect(image))
-            cached[r.photo_id] = Features(
-                boxes=boxes,
-                clip=dict(zeroshot.classify(image)),
-                sharpness=measure(image, largest_box(boxes)),
-                width=image.width,
-                height=image.height,
-            )
-        out[r.photo_id] = cached[r.photo_id]
+        path = image_path(folder, r)
+        if not path.is_file():
+            raise FileNotFoundError(f"a foto {r.photo_id} do manifesto não tem arquivo em {path}")
+        file_hash = _file_hash(path)
+        entry = cached.get(r.photo_id)
+        # Só aproveita o cache se o arquivo for o mesmo que gerou aquelas saídas.
+        if entry is None or entry[0] != file_hash:
+            cached[r.photo_id] = (file_hash, _run_models(r.photo_id, path, detector, zeroshot))
+        out[r.photo_id] = cached[r.photo_id][1]
     _save_cache(cache_path, cached)
     return out
 

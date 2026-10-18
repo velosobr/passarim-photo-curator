@@ -52,7 +52,12 @@ def main() -> int:
                 target = args.out / "photos" / f"{photo.photo_id}.webp"
                 try:
                     if not target.exists():
-                        target.write_bytes(images.shrink(client.get_bytes(photo.image_url)))
+                        # Grava num .tmp e só depois renomeia: se o download for
+                        # interrompido no meio, não sobra um .webp cortado que a
+                        # próxima rodada tomaria por foto pronta.
+                        partial = target.with_suffix(".tmp")
+                        partial.write_bytes(images.shrink(client.get_bytes(photo.image_url)))
+                        partial.replace(target)
                 except OSError as err:
                     # Foto que não baixa ou não abre fica de fora (e não entra no
                     # manifesto, para nunca haver linha sem arquivo).

@@ -53,6 +53,7 @@ Em `tests/reference/`: fotos reais do iNaturalist, revisadas à mão, que medem 
 - `manifest.csv`: uma linha por foto, com a sugestão (`proposed_label`) e o rótulo revisado (`label`).
 - `photos/`: as fotos, com 512 px no lado maior. Cada uma mantém a licença CC dela; ver `tests/reference/ATTRIBUTION.md`.
 - Divisão fixa (semente em `src/photo_curator/reference/split.py`): os limites do `config.py` saem da metade de calibração, e a CI mede na metade de medição.
+- `split.json`: a metade de cada observação, congelada pelo `apply_review.py`. Quando o conjunto cresce, as observações antigas ficam onde estavam e só as novas são sorteadas.
 
 ```bash
 uv run python scripts/build_reference.py        # baixa ou cresce o conjunto

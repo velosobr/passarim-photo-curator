@@ -31,7 +31,10 @@ DETECTOR_MIN_SCORE = 0.5
 # referência (scripts/calibrate.py, semente 20261017, 141 fotos). Resultado
 # nessa metade: precisão de SINGLE_BIRD 92,4% (meta 95%), revocação de
 # SINGLE_BIRD 82,4% (meta 70%), revocação dos descartes 95,8% (meta 90%).
-# Quem diz se a regra passa é a metade de medição (scripts/measure.py, na CI).
+# Quem diz se a regra passa é a metade de medição (scripts/measure.py, na CI):
+# lá deu 95,7% de precisão (66 de 69), com folga de só 3 falsos positivos, e o
+# intervalo de Wilson começa em 88%. Qualquer mudança nas frases, nos pesos ou
+# nos rótulos pode deixar o job "reference" vermelho.
 #
 # Descarte por conteúdo: se a probabilidade do CLIP para a classe passa do
 # limite, a foto é descartada com a categoria correspondente. A calibração

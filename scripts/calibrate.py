@@ -23,7 +23,9 @@ def main() -> int:
     if not models_dir:
         sys.exit("defina CURATOR_MODELS_DIR (pasta dos pesos)")
     rows = manifest.read(REFERENCE / "manifest.csv")
-    half = split.split(rows)[split.CALIBRATION]
+    # As observações já sorteadas ficam na metade gravada em split.json.
+    frozen = split.read_frozen(REFERENCE / "split.json")
+    half = split.split(rows, frozen=frozen)[split.CALIBRATION]
     detector, zeroshot = features.load_models(Path(models_dir))
     feats = features.compute_all(half, REFERENCE, detector, zeroshot, CACHE)
     samples = [(r.label, feats[r.photo_id]) for r in half]

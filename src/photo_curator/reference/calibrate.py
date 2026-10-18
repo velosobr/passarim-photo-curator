@@ -56,6 +56,9 @@ GRID: dict[str, tuple[float, ...]] = {
 
 
 def _get(t: Thresholds, param: str) -> float:
+    """O valor de um limite pelo nome de PARAMS. Os de descarte moram num
+    dicionário (discard_min), então "discard_min.nest" vira t.discard_min["nest"];
+    os outros são campos do dataclass, lidos com getattr."""
     if param.startswith("discard_min."):
         return t.discard_min[param.split(".", 1)[1]]
     return getattr(t, param)
@@ -76,6 +79,12 @@ def report_for(samples: Sequence[tuple[str, Features]], t: Thresholds) -> Report
 
 
 def _distance(t: Thresholds) -> float:
+    """Quanto estes limites se afastam dos de partida, somando as diferenças.
+
+    Serve de desempate no _rank: entre dois conjuntos que acertam igual, fica o
+    que mexeu menos, porque um limite longe do padrão sem ganho nenhum é mais
+    provável de estar "decorando" a metade de calibração.
+    """
     return sum(abs(_get(t, p) - _get(DEFAULT_THRESHOLDS, p)) for p in PARAMS)
 
 
