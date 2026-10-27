@@ -61,7 +61,10 @@ uv run python scripts/make_review_page.py       # monta a página de revisão em
 uv run python scripts/apply_review.py           # aplica tests/reference/review.json
 CURATOR_MODELS_DIR=models uv run python scripts/calibrate.py   # sugere limites (metade de calibração)
 CURATOR_MODELS_DIR=models uv run python scripts/measure.py     # mede (metade de medição)
+CURATOR_MODELS_DIR=models uv run python scripts/low_confidence.py  # sugere o LOW_CONFIDENCE do worker
 ```
+
+- `scripts/low_confidence.py` imprime o limite `LOW_CONFIDENCE` do worker do catalog: o percentil 20 da confiança das fotos que o curador chama de ave sozinha na metade de calibração. A principal com confiança abaixo dele é marcada `low_confidence` no relatório de curadoria.
 
 Mudar um limite depois de olhar a medição pede um sorteio novo: troque `SEED` e registre o motivo no commit.
 
